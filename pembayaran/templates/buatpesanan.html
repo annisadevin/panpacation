@@ -1,0 +1,135 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/universal.css' %}" /> 
+{% endblock css %}
+
+{% block title %}
+Buat Pesanan Pencarian
+{% endblock title%}
+
+{% block content %}
+<br><br><br><br><br><br>
+
+<!-- container semuanya -->
+<div class="container" style="background-color: rgba(255, 255, 255, 0.653); box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);padding: 40px 40px 40px 40px">
+    
+  <!-- buat deskripsi hotel/kos/hunian -->
+  <br>
+  <h1 style="font-family: 'Inter', sans-serif">Buat Pesanan</h1>
+  <br><br>
+
+    <!-- buat pemesan-->
+    <form action='' method="POST">
+      {% csrf_token %}
+      <div class="satukesatuan">
+        <div class="outer">
+          <div class="col-md-12" >
+            <div class="row p-2 bg-white " style=" box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);">
+              <h2 style="text-align: left;margin-left: 20px;"><br>Data Pemesan</h2>
+              
+    
+                <div class="float-container">
+                  <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">Nama</h5>
+                    <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="Nama" name="namapemesan"><br>
+                  </div>
+                  <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">NIK/Passport</h5>
+                    <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="NIK/Passport" name="nikpassport"><br>
+                  </div>
+                  <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">No. Telepon</h5>
+                    <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="No. Telepon" name="notelepon"><br>
+                  </div>
+                  
+                </div>
+    
+              </div>
+            <br>
+          </div>
+        </div>
+    
+        <!-- buat data tamu, nanti di-loop di sini sesuai jumlah  -->
+        <div class="outer">
+          <div class="col-md-12" >
+            <div class="row p-2 bg-white  " style=" box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);">
+              <h2 style="text-align: left;margin-left: 20px;"><br>Data Tamu 1</h2>
+              <form method="post">
+                <div class="float-container">
+                  <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">Nama</h5>
+                    <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="Nama" name="namatamu"><br>
+                  </div>
+                  <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">NIK/Passport</h5>
+                    <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="NIK/Passport" name="niktamu"><br>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <br>
+          </div>
+        </div>
+        
+
+        <!-- untuk testcovid  -->
+        <div class="outer">
+          <div class="col-md-12" >
+            <div class="row p-2 bg-white  " style=" box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);">
+              <h2 style="text-align: left;margin-left: 35px;"><br>Detail mengenai TEST COVID-19</h2>
+              <h4 style="text-align: left;margin-left: 35px;"><br> A. Penginap yang akan melakukan Test COVID</h4>
+              
+              <!-- CHECKBOX buat valuenya selarasin sama data (ganti "satu", misal pake NIK(?))-->
+              <!-- loop juga sesuai jumlah tamu-nya -->
+              <div class="float-container" style="margin-left: 62px;">
+                  <div class="form-inline d-flex align-items-center py-2"> 
+                    <label class="tick" style="font-size:22px"> Pemesan
+                      <input type="checkbox" name="testcovidsatu" value="satu"> 
+                      <span class="check" style="top:9px;height: 18px;width: 18px;"></span> 
+                    </label> 
+                  </div>
+              </div>
+  
+  
+              <!-- DROPDOWN -->
+              <!-- Loop juga sesuai yang ada -->
+              <h4 style="text-align: left;margin-left: 35px;"><br> B. Test COVID</h4>
+              <div class="float-container" style="margin-left: 5px;">
+                <div class="float-container">
+                  <div class="float-childd" style="padding-top: 1px;"><h5 class="font-weight-bold" style="text-align: left;">Jenis Test</h5>
+                    <select class="form-control" style = "border-radius: 0px;" placeholder="Jenis" name = "jenistest" >
+                      <option value = "antigen">Antigen</option>
+                      <option value = "pcr">PCR</option>
+                    </select>
+                  </div> 
+                  <div class="float-childd" style="padding-top: 1px;"><h5 class="font-weight-bold" style="text-align: left;">Tempat</h5>
+                    <select class="form-control" style = "border-radius: 0px;"placeholder="Tempat" name = "tempattest"> 
+                      <option value = "jakarta">Jakarta</option>
+                      <option value = "malang">Malang</option>
+                      <option value = "ngawi">Ngawi</option>
+                      <option value = "bandung">Bandung</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+          
+        <!-- UNTUK TOTAL HARGA -->
+        <br><br>
+        <h3 style="text-align: left;">Total Harga:</h3>
+        <h1 style="text-align: left;"> Rp 2.000.000</h1>
+
+        <!-- UNTUK SUBMIT ATAU KEMBALI -->
+        <input type="submit" class="button" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right" value="Submit">
+        <a href="http://www.google.com/">
+          <input type="button" class="button" value="Kembali" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right">
+        </a> 
+      </div>
+    </form>
+    <br><br><br><br>
+</div>
+<br><br><br>
+{% endblock content %}
+
+{% block js %}
+{% endblock js %}

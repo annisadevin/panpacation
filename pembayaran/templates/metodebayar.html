@@ -1,0 +1,139 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/universal.css' %}" /> 
+{% endblock css %}
+        
+{% block title %}
+Metode Bayar
+{% endblock title%}
+
+{% block content %}
+<br><br><br><br>
+
+<div class="container py-5">
+    <!-- Rincian Pembayaran -->
+    <div class="row">
+        <div class="col-lg-7 mx-auto">
+            <div class="bg-white shadow-sm p-5">
+                <h1>Rincian Pembayaran</h1>
+                <br><br>
+                <!-- ubah sesuai data yg ada {{ data.}}-->
+                <div style="font-size: 20px;color:#6C757D;">
+                    <div>Nama Pemesan: Khusnul Khotimah</div>
+                    <div>Nama Hotel: Oakwood PIK Jakarta</div>
+                    <div>Lokasi: Jl. Pantai Indah Barat, Pantai Indah Kapuk, Kamal Muara 14470 Jakarta</div>
+                    <div>Tanggal Masuk: Selasa, 21 Juni 2021</div>
+                    <div>Tanggal Keluar: Kamis, 23 Juni 2021</div>
+                    <div>Durasi: 2 Hari</div>
+                    <div>Bed: Single Beds</div>
+                    <div>Total Test COVID-19: 2</div>
+                </div>
+                <br>
+                <h3 style="text-align: right;">Total Harga</h3>
+                <h1 style="text-align: right;"> Rp 2.000.000</h1>
+            </div>
+        </div>
+        
+    </div>
+    <br><br>
+
+    <!-- Metode Pembayaran -->
+    <div class="row">
+        <div class="col-lg-7 mx-auto">
+            <div class="bg-white rounded-lg shadow-sm p-5">
+                <!-- Tab Metode Pembayaran -->
+                <h1 >Metode Pembayaran</h1>
+                <br><br>
+                <ul role="tablist" class="nav bg-light nav-pills nav-fill ">
+                    <li class="nav-item">
+                        <a data-toggle="pill" href="#nav-tab-card" class="nav-link active" style="border-radius: 0px;">
+                        <i class="fa fa-credit-card"></i>
+                            Virtual Account
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="pill" href="#nav-tab-bank" class="nav-link" style="border-radius: 0px;">
+                        <i class="fa fa-university"></i>
+                            Bank Transfer
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- ISI DARI TAB -->
+                <div class="tab-content">
+
+                    <!-- VIRTUAL ACCOUNT -->
+                    <div id="nav-tab-card" class="tab-pane fade show active">
+                        <br>
+                        <h4>Virtual Account Pembayaran:</h4>
+                        <dl>
+                        <dt>No. VA</dt>
+                        <dd>1212100923723827</dd>
+                            <br><br>
+
+                            <!-- SELESAI: redirect ke receipt-->
+                            <form action='' method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="button" name="selesaiva" value="va" style="font-size: 15px;padding: 10spx 80px; text-align: right;float:right">
+                                    Selesai
+                                </button>
+                            </form> 
+
+                            <!-- KEMBALI: redirect ke buat pesanan-->
+                            <a href="http://www.google.com/">
+                                <input type="button" class="button" value="Kembali" style="font-size: 15px;padding: 10spx 80px; text-align: right;float:right">
+                            </a>                             
+                            
+                            <br><br><br>
+                        </dl>
+                    </div>
+                    <!-- End -->
+    
+
+                    <!-- BANK TRANSFER -->
+                    <div id="nav-tab-bank" class="tab-pane fade">
+                        <br>
+                        <h4>Transfer ke Akun Bank:</h4>
+                        <dl>
+                            <dt>Bank</dt>
+                            <dd>THE PACBANK</dd>
+                        </dl>
+                        <dl>
+                            <dt>Nomor Akun</dt>
+                            <dd>12912712122</dd>
+                        </dl>
+                        <dl>
+                            <dt>Khusnul Khotimah</dt>
+                            <dd>101281212192</dd>
+                            
+                            <!-- SELESAI: redirect ke receipt -->
+                            <form action='' method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="button" name="selesaibank" value="bank" style="font-size: 15px;padding: 10spx 80px; text-align: right;float:right">
+                                    Selesai
+                                </button>
+                            </form> 
+
+                            <!-- KEMBALI: redirect ke buat pesanan-->
+                            <a href="http://www.google.com/">
+                                <input type="button" class="button" value="Kembali" style="font-size: 15px;padding: 10spx 80px; text-align: right;float:right">
+                            </a>                             
+                        </dl>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+  
+<br><br>
+
+
+{% endblock content %}
+
+{% block js %}
+  
+{% endblock js %}

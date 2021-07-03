@@ -1,0 +1,209 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/universal.css' %}" /> 
+{% endblock css %}
+
+{% block title %}
+Hasil Pencarian
+{% endblock title%}
+
+{% block content %}
+
+<!-- gausah diganti -->
+<!-- start -->
+<div id="captioned-gallery">
+	<figure class="slider">
+		<figure>
+			<img src="https://i.ibb.co/ByGPY6Z/295443219-1-1.png">
+		</figure>
+		<figure>
+            <img src="https://i.ibb.co/k3wsBTr/cataloina-porto-doble-balcon2-2-1-2.png">		
+        </figure>
+		<figure>
+			<img src="https://i.ibb.co/pnnFbfX/media-e9b84227-aaef-4f80-abcb-3c42ca6292d2-1.png">
+		</figure>
+		<figure>
+			<img src="https://i.ibb.co/nmF6JDw/cara-memulai-bisnis-kos-kosan-1.png">
+		</figure>
+	</figure>
+</div>
+<!-- end -->
+
+
+<div class="wrapper">
+
+    <!-- TITLE -->
+    <div class="d-md-flex align-items-md-center">
+        <div class="h2" style="font-family: 'Inter', sans-serif;">HASIL PENCARIAN</div>
+    </div>
+
+    <!-- BANYAKNYA PENCARIAN, NANTI DITAMPILIN PAKE PINK2 -->
+    </span> <span class="pink-label px-md-2 px-1" style="border-radius: 0px;background-color: #FF96AD;color: white;">428</span> <span class="text-muted">Tempat Staycation</span>
+    <br><br>
+    <!-- BUAT TOOGLE MOBILE FILTER
+    <div class="filters"> 
+        <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#mobile-filter" aria-expanded="true" aria-controls="mobile-filter">
+            Filter<span class="px-1 fas fa-filter"></span>
+        </button> 
+    </div> -->
+    
+    <!-- untuk container kiri dan kanan -->
+    <div class="content py-md-0 py-3" >
+
+        <!-- UNTUK SIDE-BAR -->
+        <form action='' method="POST">
+            {% csrf_token %}
+            <section id="sidebar">
+                <div class="py-3">
+                    <h5 class="font-weight-bold">FILTER</h5>
+                </div>
+                <div class="py-3">
+                    <h5 class="font-weight-bold">Kota</h5>
+                    <div class="rating">
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick">Jabodetabek
+                                <input type="checkbox" name="jabodetabek" value="jabodetabek"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick">DKI Jakarta
+                                <input type="checkbox" name="jakarta" value="jakarta"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick">Jawa Tengah
+                                <input type="checkbox" name="jateng" value="jateng"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
+
+                        <!-- lanjutin -->
+
+                    </div>    
+                    <br>
+                </div>
+                <div class="py-3">
+                    <h5 class="font-weight-bold">Rating</h5>
+                    <div class="rating">
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick">
+                                <span class="fas fa-star"></span> 
+                                <span class="fas fa-star"></span> 
+                                <span class="fas fa-star"></span> 
+                                <span class="fas fa-star"></span> 
+                                <span class="fas fa-star"></span> 
+                                <input type="checkbox" name="bintang5" value="5"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick"> 
+                                <span class="fas fa-star"></span> 
+                                <span class="fas fa-star"></span> 
+                                <span class="fas fa-star"></span> 
+                                <span class="fas fa-star"></span> 
+                                <span class="far fa-star px-1 text-muted"></span> 
+                                <input type="checkbox" name="bintang4" value="4"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick">
+                                <span class="fas fa-star"></span> 
+                                <span class="fas fa-star"></span> 
+                                <span class="fas fa-star"></span> 
+                                <span class="far fa-star px-1 text-muted"></span> 
+                                <span class="far fa-star px-1 text-muted"></span> 
+                                <input type="checkbox" name="bintang3" value="3"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick"><span class="fas fa-star"></span> 
+                                <span class="fas fa-star"></span> 
+                                <span class="far fa-star px-1 text-muted"></span> 
+                                <span class="far fa-star px-1 text-muted"></span> 
+                                <span class="far fa-star px-1 text-muted"></span> 
+                                <input type="checkbox" name="bintang2" value="2"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick"> 
+                                <span class="fas fa-star"></span> 
+                                <span class="far fa-star px-1 text-muted"></span> 
+                                <span class="far fa-star px-1 text-muted"></span> 
+                                <span class="far fa-star px-1 text-muted"></span> 
+                                <span class="far fa-star px-1 text-muted"></span> 
+                                <input type="checkbox" name="bintang1" value="1"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="py-3">
+                    <h5 class="font-weight-bold" >Checkin</h5>
+                    <input  type="date" class="form-control" style = "border-radius: 0px;" name="checkin" placeholder="MM/DD/YYY"/>
+                    <br>
+                    <h5 class="font-weight-bold">Checkout</h5>
+                    <input type="date" class="form-control" style = "border-radius: 0px;" name="checkout" placeholder="MM/DD/YYY"/>
+                    <br>
+                </div>
+                <div class="py-3">
+                    <h5 class="font-weight-bold">Price</h5>
+                    <div class="form-row" >
+                        <div class="form-group col-md-6"> 
+                            <label>Min</label> 
+                            <input type="number" class="form-control" style = "border-radius: 0px;" placeholder="Rp 0" min = "0" nama="min"> 
+                        </div>
+                        <div class="form-group text-right col-md-6"> 
+                            <label>Max</label> 
+                            <input type="number" class="form-control" style = "border-radius: 0px;" placeholder="Rp 100000000" min="0" nama="max"> </div>
+                    </div>        
+                    <input type="submit" class="button" style = "border-radius: 0px;font-size: 17px;padding: 7px 9px;" value="Terapkan">
+                    <br><br>
+                </div>
+            </section>
+        </form>
+
+        <!-- HOTEL Section -->
+        <section id="products">
+            <div class="container py-3">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
+                        <div class="card"> <img class="card-img-top" src="https://i.ibb.co/TwyhxCF/250857360.jpg"> <a href="#"></a>
+                            <a href="http://www.google.com/" style="text-decoration: none;color: #000;">
+                                <div class="card-body">
+                                <h6 class="font-weight-bold pt-1">Oakwood PIK Jakarta</h6>
+                                <div class="text-muted description">Penjaringan, Jakarta Utara</div>
+                                <div class="d-flex align-items-center product"> 
+                                    <div class="productstar">
+                                        <span class="fas fa-star" style="color: #FF96AD;"></span> 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="far fa-star"></span> 
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between pt-3">
+									<div class="h4 font-weight-bold">Rp 120.000</div>
+                                </div>
+                            </div>
+                            </a> 
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+{% endblock js %}

@@ -1,0 +1,576 @@
+/* DETAILPESANAN.HTML
+================================================== */
+.carousel-item img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover
+}
+
+.banner-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: white;
+    color: black
+}
+
+.carousel-indicators li {
+    height: 0.8rem;
+    width: .8rem;
+    border-radius: 0%;
+    background-color: white
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    grid-gap: 20px;
+}
+.grid-containerd {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    grid-gap: 10px;
+}
+
+.product-image {
+    width: 100%
+}
+
+.spec-1 {
+    color: #938787;
+    font-size: 15px
+}
+
+h5 {
+    font-weight: 400
+}
+
+.para {
+    font-size: 16px
+}
+
+#map {
+    height: 300px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+  }
+
+.tag {
+    text-align: center;
+    font-size: 1.1rem
+}
+
+.cardd {
+    height: 320px;
+    padding:20px 20px;
+    border: none;
+    box-shadow: -1px 3px 5px #a7a7a7
+}
+
+.testimonial {
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+    font-weight: 500
+}
+
+.active-star {
+    color: #FF96AD;
+    margin-bottom: 8px
+}
+
+.active-star:hover {
+    color: #FF96AD;
+    cursor: pointer
+}
+
+.profile {
+    padding-top: 10px
+}
+
+.name {
+    font-weight: 700
+}
+
+.designation {
+    font-size: 0.84rem;
+    font-weight: 600
+}
+
+.owl-carousel {
+    margin-bottom: 15px
+}
+
+.owl-carousel .owl-stage-outer {
+    padding: 40px 10px;
+    height: 380px
+}
+
+.owl-carousel .owl-item img {
+    width: 45px !important;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover
+}
+
+.owl-theme .owl-nav [class*='owl-'] {
+    border-radius: 50% !important;
+    background: inherit !important;
+    border: 3px solid #bbb;
+    color: #bbb !important
+}
+
+@media(max-width: 575.5px) {
+    .container {
+        margin: 0px;
+        padding: 20px
+    }
+}
+ 
+/*================================================== */
+/*                BUTTON UNIVERSAL                   */
+/*================================================== */
+.button {
+    font-family: 'Inter', sans-serif;;
+    background-color: #FF96AD;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight:bolder;
+}
+.button:hover{
+    background-color: #f5b1c0;
+}
+
+/*================================================== */
+/*                UNTUK FLOAT UNIVERSAL              */
+/*================================================== */
+
+.float-container {
+    border: none;
+    padding: 20px;
+    
+}
+
+/* BUAT 3 OBJEK SATU LINE */
+.float-child {
+    width: 33%;
+    float: left;
+    padding: 20px;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}  
+/* BUAT 2 OBJEK SATU LINE */
+.float-childd {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    border: none;
+    text-align: center;
+
+}  
+
+/* BUAT 4 OBJEK SATU LINE */
+.float-childs {
+    width: 25%;
+    float: left;
+    padding: 20px;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}  
+
+/* BUAT 1 OBJEK SATU LINE */
+.float-childm {
+    width: 100%;
+    float: left;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+}  
+
+/*================================================== */
+/*                UNTUK STAR UNIVERSAL              */
+/*================================================== */
+
+.rating .check {
+    background-color: #fff;
+    border: 1px solid #666;
+    top: 0
+}
+
+.rating .tick {
+    font-size: 0.9rem;
+    padding-left: 25px
+}
+
+/* untuk rating yg sidebar */
+.rating .fas.fa-star {
+    color: #FF96AD;
+    padding: 0px 3px;
+    align-items: left;
+    
+}
+
+/* untuk rating hotel di card */
+.productstar .fas.fa-star {
+    color: #FF96AD;
+    align-items: left;
+    
+}
+
+.tick:hover input~.check,
+.rating .tick:hover input~.check {
+    background-color: #f9f9f9
+}
+
+.tick input:checked~.check,
+.rating .tick input:checked~.check {
+    background-color: #FF96AD
+}
+
+.rating .check {
+    background-color: #fff;
+    border: 1px solid #666;
+    top: 0
+}
+
+.rating .tick {
+    font-size: 0.9rem;
+    padding-left: 25px
+}
+
+.rating .fas.fa-star {
+    color: #FF96AD;
+    padding: 0px 3px;
+    align-items: left;
+    
+}
+
+.tick:hover input~.check,
+.rating .tick:hover input~.check {
+    background-color: #f9f9f9
+}
+
+.tick input:checked~.check,
+.rating .tick input:checked~.check {
+    background-color: #FF96AD
+}
+
+/* buat di detail pencarian */ 
+.ratings .tick {
+    font-size: 0.9rem;
+    padding-left: 25px;
+}
+
+/* buat di detail pencarian */
+.ratings .fas.fa-star {
+    color: #FF96AD;
+    padding: 0px 3px;
+    align-items: left;
+    
+}
+
+/* HASIL_PENCARIAN.HTML
+================================================== */
+/* make button universal, sidebar, wrapper, figure, products, container py-3*/
+
+/* buat foto di atas */
+
+@keyframes slidy {
+    0% { left: 0%; }
+    20% { left: 0%; }
+    25% { left: -100%; }
+    45% { left: -100%; }
+    50% { left: -200%; }
+    70% { left: -200%; }
+    75% { left: -300%; }
+    95% { left: -300%; }
+    100% { left: -400%; }
+    }
+    
+    body, figure { 
+      margin: 0; background: rgba(145, 145, 145, 0.047);
+    }
+    div#captioned-gallery { 
+      width: 100%; overflow: hidden; 
+    }
+    figure.slider { 
+      position: relative; width: 500%;
+      font-size: 0; animation: 30s slidy infinite; 
+    }
+    figure.slider figure { 
+      width: 20%; height: 100px;
+      display: inline-block;  position: inherit; 
+    }
+    figure.slider img { 
+        width: 100%; height: auto; 
+    }
+
+/* buat di bawah  */
+.wrapper {
+    padding: 30px;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #F7F4F4;
+}
+
+.checkbox {
+    padding: 6px 10px
+}
+
+.border {
+    border-radius: 12px
+}
+
+.options {
+    position: relative;
+    padding-left: 25px
+}
+
+.checkbox label {
+    display: block;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0
+}
+
+.options input {
+    opacity: 0
+}
+
+div.text-muted {
+    font-size: 0.85rem
+}
+
+.card{
+    box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);
+    padding:3px 1px 1px 1px;
+
+}
+.card img{
+    border-radius: 0px;
+    
+}
+.card:hover {
+    transform: scale(1.1);
+    transition: all 0.4s ease-in-out;
+    cursor: pointer
+}
+
+.card-body {
+    padding: 0.5rem
+}
+
+.card-body .description {
+    font-size: 0.78rem;
+    padding-bottom: 8px
+}
+
+img {
+    width: 192px;
+    height: 132px;
+    object-fit: contain
+}
+
+label {
+    cursor: pointer
+}
+
+.tick {
+    display: block;
+    position: relative;
+    padding-left: 23px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin: 0
+}
+
+.tick input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0
+}
+
+.check {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 0px
+}
+
+.tick:hover input~.check {
+    background-color: #b8b8b8e0
+}
+
+.tick input:checked~.check {
+    background-color: #FF96AD
+}
+
+.check:after {
+    content: "";
+    position: absolute;
+    display: none
+}
+
+.tick input:checked~.check:after {
+    display: block;
+    transform: rotate(45deg) scale(1)
+}
+
+.tick .check:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg) scale(2)
+}
+
+.pink-label {
+    background-color: #FF96AD;
+    color: #FFFFFF ;
+    font-size: 0.8rem;
+    margin: 0 3px
+
+}
+
+#sidebar {
+    width: 25%;
+    float: left;
+    background-color: white;
+    box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);
+    padding: 1rem 1rem 1rem 1rem
+}
+
+#products {
+    width: 75%;
+    padding-left: 30px;
+    margin: 0;
+    float: right
+}
+
+@media(min-width:576px) and (max-width:767px) {
+    #sidebar {
+        width: 35%
+    }
+
+    #products {
+        width: 65%
+    }
+
+    .filter,
+    #mobile-filter {
+        display: none
+    }
+
+    .h3+.ml-auto {
+        margin: 0
+    }
+}
+
+@media(max-width:575px) {
+    .wrapper {
+        padding: 10px
+        
+    }
+
+    .h3 {
+        font-size: 1.3rem
+    }
+
+    #sidebar {
+        display: none
+    }
+
+    #products {
+        width: 100%;
+        float: none
+    }
+
+    #products {
+        padding: 0
+    }
+
+    .clear {
+        float: left;
+        width: 80%
+    }
+
+    .btn.btn-success {
+        visibility: visible;
+        margin: 10px 0px;
+        color: #fff;
+        padding: 0.2rem 0.1rem;
+        width: 20%
+    }
+
+    .pink-label {
+        width: 50%;
+    }
+
+    .btn.text-success {
+        padding: 0
+    }
+
+    .content,
+    #mobile-filter {
+        clear: both
+    }
+}
+
+@media(min-width:992px) {
+
+    .filter,
+    #mobile-filter {
+        display: none
+    }
+}
+
+@media(min-width:768px) and (max-width:991px) {
+
+    .radio,
+    .checkbox {
+        padding: 6px 10px;
+        width: 49%;
+        float: left;
+        margin: 5px 5px 5px 0px
+    }
+
+    .filter,
+    #mobile-filter {
+        display: none
+    }
+}
+
+
+
+/* BUATPESANAN.HTML
+================================================== */
+/* cuma make float universal + button universal*/
+
+/* METODEBAYAR.HTML dan RECEIPT HTML
+================================================== */
+/* cuma make button universal + in-line modification*/

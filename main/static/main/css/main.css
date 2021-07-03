@@ -1,0 +1,55 @@
+/* HOMEPAGE */
+#jumbotron{
+    background-image: url('../img/Jumbotron.png');
+    height: 500px;
+    padding-left: 8% !important;
+    padding-right: 8% !important;
+}
+
+#pertanyaan-judul{
+    margin-top: 10%;
+    margin-bottom: 5%;
+    font-size: 5%;
+}
+
+.carousel{
+    background: #2f4357;
+    margin-top: 20px;
+    width: 50%;
+    height: 50%;
+}
+
+.carousel-item{
+    text-align: center;
+    min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+}
+
+#container-form-homepage{
+    margin-top: -50px !important;
+    background-color: white;
+}
+
+.homepage-form{
+    border-radius: 0px;
+    border-color: transparent;
+    padding-top: 5%;
+    padding-bottom: 5%;   
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#button-check-ketersediaan{
+    color: white;
+    background-color: #FF96AD !important;
+    border-radius: 0px !important;
+}
+
+#pilihan-navigasi{
+    padding-left: 15% !important;
+    padding-right: 15% !important;
+    border-radius: 0px !important;
+}
+
+#foto-pilih-navigasi{
+    border-radius: 0px;
+}

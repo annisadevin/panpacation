@@ -1,0 +1,68 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/universal.css' %}" /> 
+{% endblock css %}
+
+{% block title %}
+Receipt
+{% endblock title%}
+
+{% block content %}
+<br><br><br><br>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-7 mx-auto">
+            <div class="bg-white shadow-sm p-5">
+                
+                <center>
+                    <span class="fa fa-check-circle fa-6x" style="color: #FF96AD;"></span>
+                </center>
+                <br>
+                <h1>Transaksi Berhasil!</h1><br>
+                <br>
+
+                <!-- ubah sesuai data yg ada {{ data.}} -->
+                <!-- hotel atau enggaknya nanti sesuain aja -->
+
+                <h4>Rincian Pembayaran</h4>
+                <div style="font-size: 17px;color:#6C757D;">
+                    <div>Nama Pemesan: Khusnul Khotimah</div>
+                    <div>Nama Hotel: Oakwood PIK Jakarta</div>
+                    <div>Lokasi: Jl. Pantai Indah Barat, Pantai Indah Kapuk, Kamal Muara 14470 Jakarta</div>
+                    <div>Tanggal Masuk: Selasa, 21 Juni 2021</div>
+                    <div>Tanggal Keluar: Kamis, 23 Juni 2021</div>
+                    <div>Durasi: 2 Hari</div>
+                    <div>Bed: Single Beds</div>
+                    <div>Total Test COVID-19: 2</div>
+                </div>
+                <br>
+                <h3 style="text-align: right;">Total Harga</h3>
+                <h1 style="text-align: right;"> Rp 2.000.000</h1>
+
+            </div>
+            <br>
+
+            <!-- KEMBALI: redirect ke list pesanan-->
+            <a href="http://www.google.com/">
+                <input type="button" class="button" value="Selesai" style="font-size: 20px;padding: 10px 60px; text-align: right;float:right">
+            </a>          
+        </div>
+        
+    </div>
+    </div>
+    </div>
+    </div>
+
+</div>
+    
+  
+  
+<br><br><br>
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'js/receipt.js' %}"></script>
+{% endblock js %}

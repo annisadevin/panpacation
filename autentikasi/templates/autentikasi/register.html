@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block style%}
+<link rel="stylesheet" href="{% static 'autentikasi/css/autentikasi.css' %}">
+<title> Register </title>
+{%endblock style%}
+
+{% block content %}
+<section id="register">
+  <div class="container register d-flex justify-content-center align-items-center">
+    <div class="row register my-5 shadow">
+        <div class="col-md-6 text-center text-white lcol">
+            <div class="greeting">
+                <h3 class="font-weight-bold">Welcome</h3>
+                <h6 class="font-weight-light">Sign in untuk pesan</h6>
+                <a href="#">
+                  <button id="button-sign-in" type="button" class="mt-5 btn btn-light">Sign In</button>
+                </a>
+            </div>
+            <div class="col">
+              <img id="panda-welcome" src="{% static 'autentikasi/img/PandaWelcome.png' %}" alt="LOGO-PANPACATION">	
+            </div>
+        </div>
+        <div class="col-md-6 rcol d-flex justify-content-center align-items-center">
+            <form class="sign-up">
+                <h2 class="heading mb-4">Register</h2>
+                <div class="form-group fone mt-2"> <i class="fas fa-user"></i> <input type="name" class="form-control" placeholder="Nama Depan"> </div>
+                <div class="form-group fone mt-2"> <i class="fas fa-user"></i> <input type="name" class="form-control" placeholder="Nama Belakang"> </div>
+                <div class="form-group fone mt-2"> <i class="fas fa-envelope"></i> <input type="email" class="form-control" placeholder="Email"> </div>
+                <div class="form-group fone mt-2"> <i class="fas fa-lock"></i> <input type="password" class="form-control" placeholder="Password">
+                    <div class="image"><i class="fas fa-eye"></i></div>
+                <div class="col">
+                  <button type="button" class="btn btn-success mt-5">Register</button>
+                </div>
+            </form> 
+        </div>
+    </div>
+</div>
+</section>
+{% endblock content %}
