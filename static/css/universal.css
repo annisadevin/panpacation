@@ -1,4 +1,4 @@
-/* DETAILPESANAN.HTML
+/* DETAILPENCARIAN.HTML
 ================================================== */
 .carousel-item img {
     width: 100%;
@@ -72,9 +72,9 @@ h5 {
 }
 
 .testimonial {
-    font-size: 0.9rem;
+    font-size: 2px;
     line-height: 1.4rem;
-    font-weight: 500
+    font-weight: 500;
 }
 
 .active-star {
@@ -129,7 +129,18 @@ h5 {
         padding: 20px
     }
 }
+
+
+.all .fa{
+    font-size: 10px;
+    color: #878282;
+}
+.all .faci{
+    font-size: 10px;
+    color: #878282;
+}
  
+
 /*================================================== */
 /*                BUTTON UNIVERSAL                   */
 /*================================================== */
@@ -138,18 +149,17 @@ h5 {
     font-family: 'Inter', sans-serif;;
     background-color: #FF96AD;
     border: none;
-    color: #432020;
+    color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 20px;
+    font-size: 15px;
     margin: 4px 2px;
     cursor: pointer;
-    font-weight:bolder;
 }
 .button:hover{
-    background-color: #f5b1c0;
+    background-color: #ffbbc9;
 }
 
 .buttonB {
@@ -165,10 +175,92 @@ h5 {
     font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
-    font-weight:bolder;
 }
 .buttonB:hover{
     background-color: #dbdcdd;
+}
+
+body {
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-image: linear-gradient(180deg, #1E88E5, #fff);
+    background-repeat: no-repeat
+}
+
+.card {
+    box-shadow: 0px 4px 8px 0px #BDBDBD
+}
+
+.profile-pic {
+    width: 100px !important;
+    height: 100px;
+    box-shadow: 0px 4px 8px 0px #BDBDBD
+}
+
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel .owl-nav button.owl-prev {
+    background: 0 0;
+    color: #1E88E5 !important;
+    border: none;
+    padding: 5px 20px !important;
+    font: inherit;
+    font-size: 50px !important
+}
+
+.owl-carousel .owl-nav button.owl-next:hover,
+.owl-carousel .owl-nav button.owl-prev:hover {
+    color: #0D47A1 !important;
+    background-color: transparent !important
+}
+
+.owl-dots {
+    display: none
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
+}
+
+.item {
+    display: none
+}
+
+.next {
+    display: block !important;
+    position: relative;
+    transform: scale(0.8);
+    transition-duration: 0.3s;
+    opacity: 0.6
+}
+
+.prev {
+    display: block !important;
+    position: relative;
+    transform: scale(0.8);
+    transition-duration: 0.3s;
+    opacity: 0.6
+}
+
+.item.show {
+    display: block;
+    transition-duration: 0.4s
+}
+
+@media screen and (max-width: 999px) {
+
+    .next,
+    .prev {
+        transform: scale(1);
+        opacity: 1
+    }
+
+    .item {
+        display: block !important
+    }
 }
 
 /*================================================== */
