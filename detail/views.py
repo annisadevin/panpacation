@@ -10,14 +10,24 @@ from collections import namedtuple
 # Create your views here.
 
 def hasil_pencarian(request):
-    namap = request.POST.get('checkin', None)
-    print(namap)
+    with connection.cursor() as c:
+        c.execute("SELECT * FROM PENGGUNA")
+        res = dictfetchall(c)
+
+
+    # namap = request.POST.get('checkin', None)
+    print(res[0]['username'])
     return render(request,'hasil_pencarian.html') 
 
-def detail_pencarian(request):
-    namap = request.POST.get('checkin', None)
-    print(namap)
-    return render(request,'detail_pencarian.html') 
+    
+
+def dictfetchall(cursor):
+    "Return all rows from a cursor as a dict"
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
 
 
 
