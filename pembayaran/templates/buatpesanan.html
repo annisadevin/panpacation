@@ -231,7 +231,7 @@ Buat Pesanan Pencarian
               <h4 style="text-align: left;margin-left: 35px;"><br> B. Pilih Test COVID</h4>
               <div class="float-container" style="margin-left: 5px;">
                 <div class="float-container">
-                  <div class="float-childm" style="padding-top: 1px;"><h5 class="font-weight-bold" style="text-align: left;margin-left: 15px;">Lokasi, Jenis Test, Harga</h5>
+                  <div class="float-childm" style="padding-top: 1px;"><h5 class="font-weight-bold" style="text-align: left;margin-left: 15px; margin-right: 15px;">Lokasi, Jenis Test, Harga</h5>
                     <select id='test-terpilih' class="form-control" style = "border-radius: 0px;margin-left: 15px;" placeholder="TEST Covid" name="test-terpilih">
                       {% for row in test_covid_avail %}
                       
@@ -245,19 +245,22 @@ Buat Pesanan Pencarian
               <br>
             </div>
             <br><br>
-            
+            <!-- UNTUK SUBMIT ATAU KEMBALI -->
+            <div>
+              <input type="submit" class="button" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right" value="Submit"></input>
+                <a href="http://www.google.com/">
+              <input type="button" class="buttonB" value="Kembali" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right"></input>
+                </a> 
+            <br>
+          </div>
+          <br>
+          <br>
           </div>
 
-          <!-- UNTUK SUBMIT ATAU KEMBALI -->
-          <div>
-            <input type="submit" class="button" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right" value="Submit"></input>
-            <a href="http://www.google.com/">
-            <input type="button" class="buttonB" value="Kembali" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right"></input>
-            </a> 
-          </div>
+          
+          
         </div>
         
-        <br><br><br>
       </div>
     </form>
     <br><br><br><br>

@@ -7,5 +7,3 @@ urlpatterns = [
     path('metodebayar/<str:nama_pemesan>/<str:nama_penginapan>/<str:tgl_checkin>/<str:tgl_checkout>/<int:durasi>/<int:total_harga_penginapan>', metodebayar, name='metodebayar'),
     path('receipt/<str:nama_pemesan>/<str:nama_penginapan>/<str:tgl_checkin>/<str:tgl_checkout>/<int:durasi>/<int:total_harga_penginapan>', receipt, name='receipt'),
 ]
-
-

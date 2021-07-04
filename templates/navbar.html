@@ -3,9 +3,8 @@
     <div class="row">
       <div class="col-12">
         <nav class="navbar navbar-expand-md navbar-light" style="height: 70px;">
-        
-          <a class="navbar-brand" href="#" target="_blank"><img src="https://i.ibb.co/ryKmy2M/LOGO-PANPACATION.png" alt="LOGO-PANPACATION" border="0"></a>	
-        
+          <a class="navbar-brand mt-3" href="{% url 'main:main'%}"><img src="https://i.ibb.co/mHMYYgg/Group-596-2.png" alt="LOGO-PANPACATION" border="0"></a>	
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -13,9 +12,8 @@
           {% if is_authenticated %}
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto py-4 py-md-0">
-
               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                <a class="nav-link" href="">List Reservasi</a>
+                <a class="nav-link" href="{% url 'main:main'%}">Homepage</a>
               </li>
               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                 <a class="nav-link" href="{% url 'aboutuser:profil'%}">Profil</a>
@@ -27,7 +25,7 @@
                 <a class="nav-link" href="#">|</a>
               </li>
               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                <a class="nav-link" href="#">{{username}}</a>
+                <a class="nav-link" href="#">Hallo, {{nama_depan}}</a>
               </li>
             </ul>
           </div>
@@ -51,4 +49,3 @@
     </div>
   </div>
 </div>
-

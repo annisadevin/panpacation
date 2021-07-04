@@ -9,6 +9,12 @@ from collections import namedtuple
 
 from datetime import date
 
+def set_session(request, response):
+    response['is_authenticated'] = request.session.get('is_authenticated')
+    response['username'] = request.session.get('username')
+    response['nama_depan'] = request.session.get('nama_depan')
+    response['nama_belakang'] = request.session.get('nama_belakang')
+
 def dictfetchall(cursor):
     "Return all rows from a cursor as a dict"
     columns = [col[0] for col in cursor.description]
@@ -190,10 +196,12 @@ def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_pengina
         'tanggungan':tanggungan,
         'test_covid_avail':test_covid_avail,
     }
-    
+    set_session(request, argument)
     return render(request,'buatpesanan.html', argument) 
 
 def metodebayar(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_checkin, tgl_checkout, durasi, total_harga_penginapan, total_test_covid, total_semua, no_telp, total_penginap):
+    response = {} 
+    set_session(request, response)
     if request.method == "POST": 
         return receipt(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_checkin, tgl_checkout, durasi, total_harga_penginapan, total_test_covid, total_semua, no_telp, total_penginap)
 
@@ -210,10 +218,12 @@ def metodebayar(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_check
         'id_penginapan': id_penginapan,
         'total_penginap': total_penginap,
     }
-
+    set_session(request, argument)
     return render(request,'metodebayar.html', argument) 
 
 def receipt(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_checkin, tgl_checkout, durasi, total_harga_penginapan, total_test_covid, total_semua, no_telp, total_penginap):
+     
+    
     argument = {
         'nama_pemesan':nama_pemesan,
         'nama_penginapan':nama_penginapan,
@@ -227,4 +237,5 @@ def receipt(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_checkin, 
         'id_penginapan': id_penginapan,
         'total_penginap': total_penginap,
     }
+    set_session(request, argument)
     return render(request,'receipt.html', argument) 

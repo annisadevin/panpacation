@@ -20,8 +20,9 @@ p {
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid #e7eaed;
-    border-radius: 0;
+    border-radius: 0px;
 }
+
 .card .card-description {
     margin-bottom: .875rem;
     font-weight: 400;
@@ -255,7 +256,7 @@ select#select-feeds option{
     color: white;
 }
 
-#button-review{
+#button-review, #button-review2{
     color: white;
     background-color: #FF96AD !important;
     border-radius: 0px !important;
@@ -305,4 +306,8 @@ select#select-feeds option{
 #star{
     font-size: 30px;
     color: #FF96AD;
+}
+
+#foto-list-pesan{
+    border-radius: 0px !important;
 }
