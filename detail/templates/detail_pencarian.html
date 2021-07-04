@@ -42,17 +42,17 @@ Detail Pencarian
     <div class="forminaja">
       <div class="grid-container">
         <div style="text-align: left;">
-            <div class="ratings" style="font-size: 20px;margin-bottom: 10px;"><span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span></div>
-            <h2 style="font-size: 35px; margin-bottom: 10px;">Oakwood PIK Jakarta</h2>
+            <div class="ratings" style="font-size: 15px;margin-bottom: 10px;"><span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span></div>
+            <h4 style="font-size: 30px; margin-bottom: 10px;">Oakwood PIK Jakarta</h4>
 
             <div class="ratings">
             </div>
-            <h5 class="text-muted"><span class="fas fa-map-marker-alt" style="margin-bottom: 10px;" ></span> Jl. Pantai Indah Barat, Pantai Indah Kapuk, Kamal Muara 14470 Jakarta <br></h5>
-            <h5 class="text-muted"><span class="fas fa-phone" style="margin-bottom: 10px;"></span> 021 50233333 </h5>        
+            <h5 class="text-muted"  style="font-size: 15px;"><span class="fas fa-map-marker-alt" style="font-size: 15px;margin-bottom: 10px;" ></span> Jl. Pantai Indah Barat, Pantai Indah Kapuk, Kamal Muara 14470 Jakarta <br></h5>
+            <h5 class="text-muted"  style="font-size: 15px;"><span class="fas fa-phone" style="font-size: 15px;margin-bottom: 10px;"></span> 021 50233333 </h5>        
         </div>
         <div style="text-align:right;bottom: 0; right: 0;">
           <br><Br><br>
-          <input type="submit" class="button" value="Pesan Sekarang" style="">
+          <input type="submit" class="button" value="Pesan Sekarang">
         </div>
       </div>
       <br><br>
@@ -64,13 +64,13 @@ Detail Pencarian
             <form action='' method="POST">
               {% csrf_token %}
               <div class="float-container">
-                <div class="float-child"><h5 class="font-weight-bold" >Checkin</h5>
+                <div class="float-child"><h6 class="font-weight-bold" >Checkin</h6>
                   <input  type="date" class="form-control" style = "border-radius: 0px;" name="checkin" placeholder="MM/DD/YYY"/>
                 </div>
-                <div class="float-child"><h5 class="font-weight-bold" >Checkout</h5>
+                <div class="float-child"><h6 class="font-weight-bold" >Checkout</h6>
                   <input  type="date" class="form-control" style = "border-radius: 0px;" name="checkout" placeholder="MM/DD/YYY"/>
                 </div>
-                <div class="float-child"><h5 class="font-weight-bold" >Jumlah Orang</h5>
+                <div class="float-child"><h6 class="font-weight-bold" >Jumlah Orang</h6>
                   <input type="number" class="form-control" style = "border-radius: 0px;" placeholder="0" min="0" nama = "jml"> </div>
                 </div>
                 <!-- <div class="float-child">
@@ -92,20 +92,24 @@ Detail Pencarian
           <img class="img-fluid img-responsive product-image" src="https://i.ibb.co/SrDt8kg/1.jpg">
         </div>
         <div class="col-md-6 mt-1">
-          <h3>Single Bed</h3>
-          <div class="mt-1 mb-1 spec-1"><span class="fa fa-user"></span><span> 1 Dewasa</span></div>
-          <div class="mt-1 mb-1 spec-1"><span class="fa fa-bath"></span><span> Bathtub </span></div>
-          <div class="mt-1 mb-1 spec-1"><span class="fa fa-fan"></span><span> Air Conditioner </span></div>
-          <div class="mt-1 mb-1 spec-1"><span class="fa fa-hot-tub"></span><span> Air Hangat </span></div>
+          <br>
+          <h5>Ruangan King-King</h5>
+          <div class="all" style="font-size: 10px;">
+            <span class="fa fa-user"></span><span class="faci"> 1 Dewasa</span> <br>
+            <span class="fa fa-bath"></span><span  class="faci"> Bathtub </span> <br>
+            <span class="fa fa-fan"></span><span  class="faci"> Air Conditioner </span><br>
+            <span class="fa fa-hot-tub"></span><span  class="faci"> Air Hangat </span>
+          </div>
         </div>
         <div class="align-items-right col-md-3 border-left mt-1" style="text-align:right;">
+          <!-- <input type="submit" class="button" value="Tambahkan"> -->
+          <form action='' method="POST">
+            {% csrf_token %}
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+          </form>
           <div class="kanan" style="position: absolute;bottom: 0;right: 0;padding: 7px 10px 10px 10px;">
-            <form action='' method="POST">
-              {% csrf_token %}
-              <h3 style="text-align: right;">Rp 120.000</h3>
-              <input type="submit" class="button" style="font-size: 18px;padding:10px 30px;" value="Tambahkan">
-            </form>
-          </div> 
+            <h4 style="text-align: right;">Rp 120.000</h4>
+          </div>
       </div>
     </div>
   </div>
@@ -163,15 +167,16 @@ Detail Pencarian
           <div class="owl-carousel owl-theme">
             <div class="owl-item">
               <div class="cardd d-flex flex-column">
-                <div class="main font-weight-bold pb-2 pt-2">
-                  Great Service
-                </div>
                 <div class="mt-2"> 
                   <span class="fas fa-star active-star"></span> <span class="fas fa-star active-star"></span> <span class="fas fa-star active-star"></span> <span class="fas fa-star active-star"></span> <span class="fas fa-star-half-alt active-star"></span> 
                 </div>
-                <div class="testimonial"> 
+                <div class="main font-weight-bold pb-2 pt-2" style="font-size: 15px;">
+                  Great Service
+                </div>
+                <div class="testimonial" style="font-size: 10px;"> 
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni dolores molestias veniam inventore itaque eius iure omnis, temporibus culpa id. 
                 </div>
+
               </div>
             </div>
           </div>
