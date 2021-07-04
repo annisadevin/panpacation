@@ -166,6 +166,16 @@ def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_pengina
 
         harga_test_covid = int(test_terpilih)*counter
         total_semua = harga_test_covid + total_pesanan
+
+        with connection.cursor() as c:
+            c.execute("update transaksi set total_bayar=%s", [total_semua])
+
+        with connection.cursor() as c:
+            c.execute("update transaksi_penginapan set total_bayar=%s", [total_pesanan])
+
+        with connection.cursor() as c:
+            c.execute("update transaksi_test_covid set total_bayar=%s", [harga_test_covid])
+            
         return metodebayar(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_checkin, tgl_checkout, range_tanggal, total_pesanan, harga_test_covid, total_semua, no_telp,  total_penginap)
    
     if request.is_ajax:
