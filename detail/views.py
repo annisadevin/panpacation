@@ -7,6 +7,12 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from collections import namedtuple
 
+def set_session(request, response):
+    response['is_authenticated'] = request.session.get('is_authenticated')
+    response['username'] = request.session.get('username')
+    response['nama_depan'] = request.session.get('nama_depan')
+    response['nama_belakang'] = request.session.get('nama_belakang')
+
 # Create your views here.
 def dictfetchall(cursor):
     "Return all rows from a cursor as a dict"
@@ -399,51 +405,8 @@ def hasil_pencarian(request, checkin, checkout, reservasi, lokasi, jumlah):
         context['ci'] = checkin
         context['co'] = checkout
         context['jum'] = jumlah
-
+        set_session(request, context)
         return render(request,'hasil_pencarian.html', context) 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     elif request.method == "GET":
         print("masuk GET")
@@ -629,7 +592,8 @@ def hasil_pencarian(request, checkin, checkout, reservasi, lokasi, jumlah):
         context['ci'] = checkin
         context['co'] = checkout
         context['jum'] = jumlah
-
+        set_session(request, context)
+        
         return render(request,'hasil_pencarian.html', context) 
    
 
@@ -657,6 +621,8 @@ def hasil_pencarian(request, checkin, checkout, reservasi, lokasi, jumlah):
 
 
 def hasil_pencarian2(request, reservasi):
+    response = {} 
+    set_session(request, response)
     context = {}
 
     if request.method == "GET":

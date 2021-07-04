@@ -9,8 +9,17 @@ from collections import namedtuple
 from django.http import JsonResponse
 from datetime import datetime
 
+def set_session(request, response):
+    response['is_authenticated'] = request.session.get('is_authenticated')
+    response['username'] = request.session.get('username')
+    response['nama_depan'] = request.session.get('nama_depan')
+    response['nama_belakang'] = request.session.get('nama_belakang')
 
 def detailpencarian(request, id, checkin, checkout, jml):
+    response = {} 
+    checkin = checkin[:10]
+    checkout = checkout[:10]
+
     username = request.session.get('username')
     iddddd = id
     print(iddddd)
@@ -73,7 +82,15 @@ def detailpencarian(request, id, checkin, checkout, jml):
             kapasitas = kapasitas
         else:
             kapasitas.append(a)
-        
+    
+    
+    tempo = 0
+    with connection.cursor() as c:
+        for i in range(len(kapasitas)):
+            c.execute("select kapasitas from fasilitas_room where id_fasilitas = (select id_fasilitas from data_detail where kode_room = %s);", [kapasitas[i]])
+            rres = dictfetchall(c)
+            tempo = tempo+ int(rres[0]['kapasitas'])
+    print(tempo)
     a = int(res[0]['iswifi']) + int(res[0]['isparkirluas'])
     link = rep[0]
     arrlink = rep[1:]
@@ -152,31 +169,35 @@ def detailpencarian(request, id, checkin, checkout, jml):
 
         try:
             if (ci > co):
-                return redirect('/')
-
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            if (int(j) > tempo):
+                print("halo")
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
             with connection.cursor() as c:
                 c.execute("INSERT INTO transaksi VALUES (%s, %s, %s, %s, %s, %s)", [newest_id,'Belum bayar',0, 'VA', username, time])
                 c.execute("INSERT INTO transaksi_penginapan VALUES (%s, %s, %s, %s, %s)", [newest_idtp, newest_id,ci, co, 0])
                 if(jenis == 'Apartemen'):
                     for i in range(len(kapasitas)):
+                        print(iddddd)
+                        print(kapasitas[i])
                         c.execute("INSERT INTO pilihan_apartemen_room VALUES(%s, %s, %s)", [newest_idtp, iddddd, kapasitas[i]])
                 elif(jenis == "Kos"):
                     for i in range(len(kapasitas)):
                         c.execute("INSERT INTO pilihan_kos_room VALUES(%s, %s, %s)", [newest_idtp, iddddd, kapasitas[i]])
                 else:
                     c.execute("INSERT INTO pilihan_villa VALUES(%s, %s)", [newest_idtp, iddddd])
-                
-            return redirect('/pembayaran/'+id+'/'+ci+'/'+co+'/'+j+'/')
+            
+            return redirect('/pembayaran/buatpesanan/'+str(iddddd)+'/'+ci+'/'+co+'/'+str(j)+'/')
 
         except IntegrityError:
             messages.error(request, 'Data yang diisikan belum lengkap, silahkan lengkapi data terlebih dahulu')
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    
-
-
-    return render(request,'detail_pencarian.html', response) 
+    set_session(request, response)
+    return render(request,'detail_pencarian.html', response)
 
 def getkodefromcheckin(request, id, checkin, checkout, jml):
+    response = {} 
+    set_session(request, response)
     with connection.cursor() as c:
         if(id[0] == 'A'):
             c.execute("SELECT * FROM DATA_DETAIL WHERE id_apartemen = %s ",[id])

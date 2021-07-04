@@ -1,0 +1,113 @@
+.text-kiri {
+    text-align: left;
+}
+
+.text-tengah {
+    text-align: center;
+}
+
+.garis-bawah {
+    border-bottom: 2px solid black;
+}
+
+.check-box-center {
+    top:6px;
+    height: 18px;
+    width: 18px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tombol-tengah {
+    display: block;
+    margin: 0 auto;
+}
+
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    max-width:max-content;
+    vertical-align: middle;
+}
+
+.text-tombol {
+    color: #3773ce;
+}
+
+
+.bg-modal {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: none;
+}
+
+.login {
+    width: 500px;
+    height: 350px;
+    background-color: white;
+    margin:auto;
+    position: relative;
+    border-radius: 4px;
+    
+}
+
+.login-parent {
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    margin: auto;
+    margin-top: 40px;
+    padding: 32px;
+    gap: 16px;
+    flex-direction: column;
+}
+
+.login-parent input {
+    width: 100%;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 42px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+.button-ijo {
+    background-color: #3FB446;
+    color: white;
+    border-radius: 4px;
+}
+
+#selanjutnya {
+    text-align: center;
+    border-radius: 2px;
+    border-color: white;
+}
+
+/* #test-covid-section, #submit-akhir {
+    display: none;
+} */
+
+.tombol-list {
+    background-color:#FF96AD;
+    padding: 4px 8px;
+    text-decoration: none;
+    color:#3773ce;
+  }

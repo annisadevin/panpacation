@@ -272,7 +272,7 @@ button:focus {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-
+    
 }  
 /* BUAT 2 OBJEK SATU LINE */
 .float-childd {
@@ -281,7 +281,14 @@ button:focus {
     padding: 20px;
     border: none;
     text-align: center;
+}  
 
+.float-child-2 {
+    width: 40%;
+    float: left;
+    padding: 20px;
+    border: none;
+    text-align: center;
 }  
 
 /* BUAT 4 OBJEK SATU LINE */

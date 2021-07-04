@@ -24,23 +24,78 @@ Receipt
                 <h1>Transaksi Berhasil!</h1><br>
                 <br>
 
-                <!-- ubah sesuai data yg ada {{ data.}} -->
-                <!-- hotel atau enggaknya nanti sesuain aja -->
-
                 <h4>Rincian Pembayaran</h4>
-                <div style="font-size: 17px;color:#6C757D;">
-                    <div>Nama Pemesan: Khusnul Khotimah</div>
-                    <div>Nama Hotel: Oakwood PIK Jakarta</div>
-                    <div>Lokasi: Jl. Pantai Indah Barat, Pantai Indah Kapuk, Kamal Muara 14470 Jakarta</div>
-                    <div>Tanggal Masuk: Selasa, 21 Juni 2021</div>
-                    <div>Tanggal Keluar: Kamis, 23 Juni 2021</div>
-                    <div>Durasi: 2 Hari</div>
-                    <div>Bed: Single Beds</div>
-                    <div>Total Test COVID-19: 2</div>
-                </div>
+
+                <table style="font-size: 20px;color:#6C757D;">
+                    <tr>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>Nama Pemesan</h6>
+                      </td>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>{{ nama_pemesan }}</h6>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>Nama Penginapan</h6>
+                      </td>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>{{ nama_penginapan }} </h6>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>Tanggal Check In</h6>
+                      </td>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>{{ tgl_checkin }} </h6>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>Tanggal Check Out</h6>
+                      </td>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>{{ tgl_checkout }} </h6>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>
+                          <h6 style="text-align: left;margin-left: 20px;"><br>Durasi</h6>
+                        </td>
+                        <td>
+                          <h6 style="text-align: left;margin-left: 20px;"><br>{{ durasi }} </h6>
+                        </td>
+                    </tr>
+                  </table>
+
+                  <table>
+                    <tr>
+                        <td>
+                            <h5 style="text-align: left;margin-left: 20px;"><br>Total Harga Penginapan</h5>
+                            
+                        </td>
+                        <td>
+                            <h5 style="text-align: left;margin-left: 20px;"><br>{{ total_harga_penginapan }}</h5>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <h5 style="text-align: left;margin-left: 20px;"><br>Total Harga Test Covid</h5>
+                            
+                        </td>
+
+                        <td>
+                            <h5 style="text-align: left;margin-left: 20px;"><br>{{ total_test_covid }}</h5>
+                            
+                        </td>
+                    </tr>
+                    
+                  </table>
+                  <h3 style="text-align: right;">Total Harga</h3>
+                    <h1 style="text-align: right;"> {{ total_semua }}</h1>
                 <br>
-                <h3 style="text-align: right;">Total Harga</h3>
-                <h1 style="text-align: right;"> Rp 2.000.000</h1>
 
             </div>
             <br>
