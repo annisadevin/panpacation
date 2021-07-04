@@ -44,6 +44,8 @@ def detailpencarian(request, id, checkin, checkout, jml):
         c.execute("select * from transaksi_penginapan ORDER BY id_transaksi DESC limit 1")
         transaksi_penginapan = dictfetchall(c)
 
+        c.execute("select * from review;")
+        rating = dictfetchall(c)
 
     arrstatus = []
     status = 1
@@ -202,5 +204,3 @@ def dictfetchall(cursor):
         dict(zip(columns, row))
         for row in cursor.fetchall()
     ]
-
-

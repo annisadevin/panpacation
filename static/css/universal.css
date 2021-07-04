@@ -163,7 +163,7 @@ h5 {
 .button {
     position: relative;
     font-family: 'Inter', sans-serif;;
-    background-color: #FF96AD;
+    background-color: #F5759D;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -206,32 +206,6 @@ body {
 
 .card {
     box-shadow: 0px 4px 8px 0px #BDBDBD
-}
-
-.profile-pic {
-    width: 100px !important;
-    height: 100px;
-    box-shadow: 0px 4px 8px 0px #BDBDBD
-}
-
-.owl-carousel .owl-nav button.owl-next,
-.owl-carousel .owl-nav button.owl-prev {
-    background: 0 0;
-    color: #1E88E5 !important;
-    border: none;
-    padding: 5px 20px !important;
-    font: inherit;
-    font-size: 50px !important
-}
-
-.owl-carousel .owl-nav button.owl-next:hover,
-.owl-carousel .owl-nav button.owl-prev:hover {
-    color: #0D47A1 !important;
-    background-color: transparent !important
-}
-
-.owl-dots {
-    display: none
 }
 
 button:focus {

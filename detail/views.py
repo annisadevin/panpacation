@@ -19,24 +19,6 @@ def dictfetchall(cursor):
 def hasil_pencarian(request, checkin, checkout, reservasi, lokasi, jumlah):
     context = {}
 
-    # with connection.cursor() as c:
-    #     c.execute("SELECT * FROM PENGGUNA")
-    #     res = dictfetchall(c)
-
-    # print(res[0]['username'])
-
-    # namap = request.POST.get('checkin', None)
-   
-
-
-
-    # if request.method == "POST":
-    #     filter = []
-    #     kota = request.POST.get('pilihKota')
-    #     # rating = request.POST.get('bintang')
-    #     filter.append(kota)
-       
-
 
     if request.method == "POST":
         print("masuk POST")
@@ -389,26 +371,26 @@ def hasil_pencarian(request, checkin, checkout, reservasi, lokasi, jumlah):
 
         with connection.cursor() as c:
                 if reservasi == 'Apartemen':
-                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM APARTEMEN A, APARTEMEN_ROOM AR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = A.id_penginapan AND A.id_penginapan = AR.id_apartemen AND TEM.id_penginapan = F.id_penginapan AND (AR.id_apartemen, AR.kode_room) NOT IN (SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
+                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, A.id_penginapan FROM APARTEMEN A, APARTEMEN_ROOM AR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = A.id_penginapan AND A.id_penginapan = AR.id_apartemen AND TEM.id_penginapan = F.id_penginapan AND (AR.id_apartemen, AR.kode_room) NOT IN (SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
                     res = dictfetchall(c)
                     context['res'] = res
-                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM APARTEMEN A, APARTEMEN_ROOM AR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = A.id_penginapan AND A.id_penginapan = AR.id_apartemen AND TEM.id_penginapan = F.id_penginapan AND (AR.id_apartemen, AR.kode_room) NOT IN (SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
+                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, A.id_penginapan FROM APARTEMEN A, APARTEMEN_ROOM AR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = A.id_penginapan AND A.id_penginapan = AR.id_apartemen AND TEM.id_penginapan = F.id_penginapan AND (AR.id_apartemen, AR.kode_room) NOT IN (SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
                     jml = dictfetchall(c)
                     context['jumlah'] = jml
 
                 elif reservasi == 'Villa':
-                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM VILLA V, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = V.id_penginapan AND TEM.id_penginapan = F.id_penginapan AND V.id_penginapan NOT IN (SELECT PV.id_villa FROM PILIHAN_VILLA PV, TRANSAKSI_PENGINAPAN TP WHERE PV.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
+                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, V.id_penginapan FROM VILLA V, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = V.id_penginapan AND TEM.id_penginapan = F.id_penginapan AND V.id_penginapan NOT IN (SELECT PV.id_villa FROM PILIHAN_VILLA PV, TRANSAKSI_PENGINAPAN TP WHERE PV.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
                     res = dictfetchall(c)
                     context['res'] = res
-                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM VILLA V, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = V.id_penginapan AND TEM.id_penginapan = F.id_penginapan AND V.id_penginapan NOT IN (SELECT PV.id_villa FROM PILIHAN_VILLA PV, TRANSAKSI_PENGINAPAN TP WHERE PV.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
+                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, V.id_penginapan FROM VILLA V, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = V.id_penginapan AND TEM.id_penginapan = F.id_penginapan AND V.id_penginapan NOT IN (SELECT PV.id_villa FROM PILIHAN_VILLA PV, TRANSAKSI_PENGINAPAN TP WHERE PV.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
                     jml = dictfetchall(c)
                     context['jumlah'] = jml
 
                 elif reservasi == 'Kost':
-                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM KOS K, KOS_ROOM KR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = K.id_penginapan AND K.id_penginapan = KR.id_kos AND TEM.id_penginapan = F.id_penginapan AND (KR.id_kos, KR.kode_room) NOT IN (SELECT PKR.id_kos, PKR.id_kode_room FROM PILIHAN_KOS_ROOM PKR, TRANSAKSI_PENGINAPAN TP WHERE PKR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
+                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, K.id_penginapan FROM KOS K, KOS_ROOM KR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = K.id_penginapan AND K.id_penginapan = KR.id_kos AND TEM.id_penginapan = F.id_penginapan AND (KR.id_kos, KR.kode_room) NOT IN (SELECT PKR.id_kos, PKR.id_kode_room FROM PILIHAN_KOS_ROOM PKR, TRANSAKSI_PENGINAPAN TP WHERE PKR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
                     res = dictfetchall(c)
                     context['res'] = res
-                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM KOS K, KOS_ROOM KR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = K.id_penginapan AND K.id_penginapan = KR.id_kos AND TEM.id_penginapan = F.id_penginapan AND (KR.id_kos, KR.kode_room) NOT IN (SELECT PKR.id_kos, PKR.id_kode_room FROM PILIHAN_KOS_ROOM PKR, TRANSAKSI_PENGINAPAN TP WHERE PKR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
+                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, K.id_penginapan FROM KOS K, KOS_ROOM KR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = K.id_penginapan AND K.id_penginapan = KR.id_kos AND TEM.id_penginapan = F.id_penginapan AND (KR.id_kos, KR.kode_room) NOT IN (SELECT PKR.id_kos, PKR.id_kode_room FROM PILIHAN_KOS_ROOM PKR, TRANSAKSI_PENGINAPAN TP WHERE PKR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
                     jml = dictfetchall(c)
                     context['jumlah'] = jml
 
@@ -1094,26 +1076,26 @@ def hasil_pencarian2(request, reservasi):
 
         with connection.cursor() as c:
                 if reservasi == 'apartemen':
-                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM APARTEMEN A, APARTEMEN_ROOM AR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = A.id_penginapan AND A.id_penginapan = AR.id_apartemen AND TEM.id_penginapan = F.id_penginapan AND (AR.id_apartemen, AR.kode_room) NOT IN (SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
+                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, A.id_penginapan FROM APARTEMEN A, APARTEMEN_ROOM AR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = A.id_penginapan AND A.id_penginapan = AR.id_apartemen AND TEM.id_penginapan = F.id_penginapan AND (AR.id_apartemen, AR.kode_room) NOT IN (SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
                     res = dictfetchall(c)
                     context['res'] = res
-                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM APARTEMEN A, APARTEMEN_ROOM AR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = A.id_penginapan AND A.id_penginapan = AR.id_apartemen AND TEM.id_penginapan = F.id_penginapan AND (AR.id_apartemen, AR.kode_room) NOT IN (SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
+                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, A.id_penginapan FROM APARTEMEN A, APARTEMEN_ROOM AR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = A.id_penginapan AND A.id_penginapan = AR.id_apartemen AND TEM.id_penginapan = F.id_penginapan AND (AR.id_apartemen, AR.kode_room) NOT IN (SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
                     jml = dictfetchall(c)
                     context['jumlah'] = jml
 
                 elif reservasi == 'villa':
-                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM VILLA V, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = V.id_penginapan AND TEM.id_penginapan = F.id_penginapan AND V.id_penginapan NOT IN (SELECT PV.id_villa FROM PILIHAN_VILLA PV, TRANSAKSI_PENGINAPAN TP WHERE PV.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
+                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, V.id_penginapan FROM VILLA V, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = V.id_penginapan AND TEM.id_penginapan = F.id_penginapan AND V.id_penginapan NOT IN (SELECT PV.id_villa FROM PILIHAN_VILLA PV, TRANSAKSI_PENGINAPAN TP WHERE PV.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
                     res = dictfetchall(c)
                     context['res'] = res
-                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM VILLA V, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = V.id_penginapan AND TEM.id_penginapan = F.id_penginapan AND V.id_penginapan NOT IN (SELECT PV.id_villa FROM PILIHAN_VILLA PV, TRANSAKSI_PENGINAPAN TP WHERE PV.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
+                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, V.id_penginapan FROM VILLA V, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = V.id_penginapan AND TEM.id_penginapan = F.id_penginapan AND V.id_penginapan NOT IN (SELECT PV.id_villa FROM PILIHAN_VILLA PV, TRANSAKSI_PENGINAPAN TP WHERE PV.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
                     jml = dictfetchall(c)
                     context['jumlah'] = jml
 
                 elif reservasi == 'kost':
-                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM KOS K, KOS_ROOM KR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = K.id_penginapan AND K.id_penginapan = KR.id_kos AND TEM.id_penginapan = F.id_penginapan AND (KR.id_kos, KR.kode_room) NOT IN (SELECT PKR.id_kos, PKR.id_kode_room FROM PILIHAN_KOS_ROOM PKR, TRANSAKSI_PENGINAPAN TP WHERE PKR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
+                    c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, K.id_penginapan FROM KOS K, KOS_ROOM KR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = K.id_penginapan AND K.id_penginapan = KR.id_kos AND TEM.id_penginapan = F.id_penginapan AND (KR.id_kos, KR.kode_room) NOT IN (SELECT PKR.id_kos, PKR.id_kode_room FROM PILIHAN_KOS_ROOM PKR, TRANSAKSI_PENGINAPAN TP WHERE PKR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
                     res = dictfetchall(c)
                     context['res'] = res
-                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, tp.id_penginapan FROM KOS K, KOS_ROOM KR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = K.id_penginapan AND K.id_penginapan = KR.id_kos AND TEM.id_penginapan = F.id_penginapan AND (KR.id_kos, KR.kode_room) NOT IN (SELECT PKR.id_kos, PKR.id_kode_room FROM PILIHAN_KOS_ROOM PKR, TRANSAKSI_PENGINAPAN TP WHERE PKR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
+                    c.execute("SELECT COUNT(*) FROM(SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, K.id_penginapan FROM KOS K, KOS_ROOM KR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = K.id_penginapan AND K.id_penginapan = KR.id_kos AND TEM.id_penginapan = F.id_penginapan AND (KR.id_kos, KR.kode_room) NOT IN (SELECT PKR.id_kos, PKR.id_kode_room FROM PILIHAN_KOS_ROOM PKR, TRANSAKSI_PENGINAPAN TP WHERE PKR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)) AS temp", [inputCheckin, inputCheckout])
                     jml = dictfetchall(c)
                     context['jumlah'] = jml
 
