@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/universal.css' %}" /> 
+    <link rel="stylesheet" href="{% static 'css/universal.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/pembayaran.css' %}" />  
 {% endblock css %}
 
 {% block title %}
@@ -26,24 +27,89 @@ Buat Pesanan Pencarian
       <div class="satukesatuan">
         <div class="outer">
           <div class="col-md-12" >
+
+            <div class="row p-2 bg-white " style=" box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);">
+              <!-- <h2 style="text-align: left;margin-left: 20px;"><br>List Pesanan XXXX</h2> -->
+              <br>
+              <table>
+                <tr>
+                  <td>
+                    <h5 style="text-align: left;margin-left: 20px;"><br>Nama {{ jenis }}</h5>
+                  </td>
+                  <td>
+                    <h5 style="text-align: left;margin-left: 20px;"><br>{{ nama }}</h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6 style="text-align: left;margin-left: 20px;"><br>Tanggal Check In</h6>
+                  </td>
+                  <td>
+                    <h6 style="text-align: left;margin-left: 20px;"><br>{{ tgl_checkin }} </h6>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6 style="text-align: left;margin-left: 20px;"><br>Tanggal Check Out</h6>
+                  </td>
+                  <td>
+                    <h6 style="text-align: left;margin-left: 20px;"><br>{{ tgl_checkout }} </h6>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6 style="text-align: left;margin-left: 20px;"><br>Jumlah Hari</h6>
+                  </td>
+                  <td>
+                    <h6 style="text-align: left;margin-left: 20px;"><br>{{ jumlah_hari }} </h6>
+                  </td>
+                </tr>
+              </table>
+            
+              <div class="float-container">
+                <div class="float-child"><h5 class="font-weight-bold" style="text-align: left;">ID Ruangan</h5>
+                  {% if jenis == 'Villa' %}
+                    <p>-</p>
+                  {% else %}        
+                  {% for row in data_transaksi %}
+                    <p class="text-kiri">{{ row.id_kode_room }}</p>
+                  {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="float-child"><h5 class="font-weight-bold" style="text-align: left;">Harga per Malam</h5>
+                  {% for row in data_transaksi %}
+                    <p class="text-kiri">Rp {{ row.harga }}</p>
+                  {% endfor %}
+                </div>
+                <div class="float-child"><h5 class="font-weight-bold" style="text-align: left;">Total Harga</h5>
+                  {% for row in total_harga %}
+                    <p class="text-kiri">Rp {{ row }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="float-container">
+                <div class="float-child"></div>
+                <div class="float-child text-kiri font-weight-bold">Total Pesanan</div>
+                <div class="float-child text-kiri font-weight-bold">Rp {{ total_pesanan }}</div>
+              </div>
+            </div>
+
+            <br>
             <div class="row p-2 bg-white " style=" box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);">
               <h2 style="text-align: left;margin-left: 20px;"><br>Data Pemesan</h2>
-              
-    
-                <div class="float-container">
-                  <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">Nama</h5>
-                    <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="Nama" name="namapemesan"><br>
-                  </div>
-                  <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">NIK/Passport</h5>
-                    <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="NIK/Passport" name="nikpassport"><br>
-                  </div>
-                  <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">No. Telepon</h5>
-                    <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="No. Telepon" name="notelepon"><br>
-                  </div>
-                  
+              <div class="float-container">
+                <div class="float-child"><h5 class="font-weight-bold" style="text-align: left;">Nama</h5>
+                  <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="Nama" name="namapemesan" value="{{ nama_pemesan }}"><br>
                 </div>
-    
+                <div class="float-child"><h5 class="font-weight-bold" style="text-align: left;">NIK/Passport</h5>
+                  <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="NIK/Passport" name="nikpassport"><br>
+                </div>
+                <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">No. Telepon</h5>
+                  <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="No. Telepon" name="notelepon"><br>
+                </div>
               </div>
+    
+            </div>
             <br>
           </div>
         </div>
@@ -52,25 +118,45 @@ Buat Pesanan Pencarian
         <div class="outer">
           <div class="col-md-12" >
             <div class="row p-2 bg-white  " style=" box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);">
-              <h2 style="text-align: left;margin-left: 20px;"><br>Data Tamu 1</h2>
+              <h2 style="text-align: left;margin-left: 20px;"><br>Data Tamu</h2>
               <form method="post">
                 <div class="float-container">
-                  <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">Nama</h5>
+                  <div class="float-child text-kiri">
+                    Jumlah Tamu: {{ total_penginap }}
+                  </div>
+                  
+                </div>
+                <div class="float-container">
+                  {% for i in  %}
+                  <div class="float-child"><h5 class="font-weight-bold" style="text-align: left;">Nama</h5>
                     <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="Nama" name="namatamu"><br>
                   </div>
-                  <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">NIK/Passport</h5>
+                  <div class="float-child"><h5 class="font-weight-bold" style="text-align: left;">NIK/Passport</h5>
                     <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="NIK/Passport" name="niktamu"><br>
                   </div>
+                  {% endfor %}
                 </div>
               </form>
             </div>
             <br>
+            </div>
+            <br>
+          </div>
+          
+        </div>
+        <div class="d-flex flex-column">
+          <div class="p-2"><h2 style="text-align: center;">Apakah Anda ingin Memesan TEST COVID?</h2></div>
+          <div class="p-2 tombol-tengah">
+            <input type="submit" class="button" style="font-size: 20px; text-align: center;float:right" value="YA">
+            <input type="button" class="buttonB" style="font-size: 20px; text-align: center;float:right" value="TIDAK">
+
           </div>
         </div>
-        
 
+        <br><br>
+        
         <!-- untuk testcovid  -->
-        <div class="outer">
+        <div class="outer" name="test-covid-section">
           <div class="col-md-12" >
             <div class="row p-2 bg-white  " style=" box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);">
               <h2 style="text-align: left;margin-left: 35px;"><br>Detail mengenai TEST COVID-19</h2>
@@ -80,9 +166,15 @@ Buat Pesanan Pencarian
               <!-- loop juga sesuai jumlah tamu-nya -->
               <div class="float-container" style="margin-left: 62px;">
                   <div class="form-inline d-flex align-items-center py-2"> 
-                    <label class="tick" style="font-size:22px"> Pemesan
+                    <label class="tick" style="font-size:20px"> Pemesan
                       <input type="checkbox" name="testcovidsatu" value="satu"> 
-                      <span class="check" style="top:9px;height: 18px;width: 18px;margin-left: 2px;margin-right: 2px"></span> 
+                      <span class="check check-box-center"></span> 
+                    </label> 
+                  </div>
+                  <div class="form-inline d-flex align-items-center py-2"> 
+                    <label class="tick" style="font-size:20px"> Pemesan
+                      <input type="checkbox" name="testcovidsatu" value="satu"> 
+                      <span class="check check-box-center"></span> 
                     </label> 
                   </div>
               </div>
@@ -90,7 +182,7 @@ Buat Pesanan Pencarian
   
               <!-- DROPDOWN -->
               <!-- Loop juga sesuai yang ada -->
-              <h4 style="text-align: left;margin-left: 35px;"><br> B. Test COVID</h4>
+              <h4 style="text-align: left;margin-left: 35px;"><br> B. Pilih Test COVID</h4>
               <div class="float-container" style="margin-left: 5px;">
                 <div class="float-container">
                   <div class="float-childd" style="padding-top: 1px;"><h5 class="font-weight-bold" style="text-align: left;margin-left: 15px;">Jenis Test</h5>
@@ -124,6 +216,7 @@ Buat Pesanan Pencarian
         <a href="http://www.google.com/">
           <input type="button" class="buttonB" value="Kembali" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right">
         </a> 
+        <br><br><br>
       </div>
     </form>
     <br><br><br><br>
@@ -132,4 +225,10 @@ Buat Pesanan Pencarian
 {% endblock content %}
 
 {% block js %}
+<script src="{% static 'js/buatpesanan.js' %}"></script>
+
+<script>
+
+</script>
+
 {% endblock js %}
