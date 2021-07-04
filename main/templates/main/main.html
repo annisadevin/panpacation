@@ -47,15 +47,15 @@
             <div class="row">
               <div class="col">
                 <label>Check In:</label>
-                <input type="date" class="form-control" placeholder="Check In" name="check_in">
+                <input type="date" class="form-control" placeholder="Check In" name="check_in" required>
               </div>
               <div class="col">
                 <label>Check Out:</label>
-                <input type="date" class="form-control" placeholder="Check Out" name="check_out">
+                <input type="date" class="form-control" placeholder="Check Out" name="check_out" required>
               </div>
               <div class="col">
                 <label>Reservasi: </label>
-                <select class="form-control" name="reservasi" id="select-reservasi">
+                <select class="form-control" name="reservasi" id="select-reservasi" required>
                     <option value="">Pilih Reservasi</option>
                     <option value="Apartemen">Apartemen</option>
                     <option value="Villa">Villa</option>
@@ -64,13 +64,13 @@
               </div>
               <div class="col">
                 <label>Lokasi: </label>
-                <select class="form-control" name="lokasi" id="select-lokasi">
+                <select class="form-control" name="lokasi" id="select-lokasi" required>
                     <option value="">Pilih Provinsi</option>
                 </select>
               </div>
               <div class="col">
                 <label>Jumlah: </label>
-                <input type="text" class="form-control" placeholder="3" name="jumlah">
+                <input type="text" class="form-control" placeholder="3" name="jumlah" required>
               </div>
             </div>
             <div class="d-flex justify-content-end align-items-start">
@@ -141,27 +141,48 @@
         <div class="col-12">
             <div class="row row-2">
                 <div class="col-sm-3 text-md-center">
-                    <h5><span> <i class="fa fa-firefox text-light" aria-hidden="true"></i></span><b> Stride</b></h5>
+                    <h5><span> <i class="fa fa-firefox text-light" aria-hidden="true"></i></span><b>Panpacation</b></h5>
                 </div>
                 <div class="col-sm-3 my-sm-0 mt-5">
                     <ul class="list-unstyled">
-                        <li class="mt-0">Platform</li>
-                        <li>Help Center</li>
-                        <li>Security</li>
+                        <a href="#pilihan-navigasi">
+                            <li class="mt-0">Villa</li>
+                        </a>
+                        <a href="#pilihan-navigasi">
+                            <li>Kost</li>
+                        </a>
+                        <a href="#pilihan-navigasi">
+                            <li>Apartemen</li>
+                        </a>
                     </ul>
                 </div>
                 <div class="col-sm-3 my-sm-0 mt-5">
                     <ul class="list-unstyled">
-                        <li class="mt-0">Customers</li>
-                        <li>Use Cases</li>
-                        <li>Customers Services</li>
+                        <a href="#service">
+                            <li class="mt-0">Test Covid</li>
+                        </a>
+                        <a href="#service">
+                            <li>Near Penginapan</li>
+                        </a>
+                        <a href="#service">
+                            <li>Kemudahan Reservasi</li>
+                        </a>
+                        <a href="#service">
+                            <li>Promo Special</li>
+                        </a>
                     </ul>
                 </div>
                 <div class="col-sm-3 my-sm-0 mt-5">
                     <ul class="list-unstyled">
-                        <li class="mt-0">Company</li>
-                        <li>About</li>
-                        <li>Careers- <span class="Careers">We're-hiring</span></li>
+                        <a href="{% url 'aboutuser:profil'%}">
+                            <li class="mt-0">Profil</li>
+                        </a>
+                        <a href="{% url 'autentikasi:login'%}">
+                            <li>Log In</li>
+                        </a>
+                        <a href="{% url 'autentikasi:register'%}">
+                            <li>Register</li>
+                        </a>
                     </ul>
                 </div>
             </div>
@@ -170,10 +191,10 @@
     <div class="row justify-content-center mt-0 pt-0 row-1 mb-0 px-sm-3 px-2">
         <div class="col-12">
             <div class="row my-4 row-1 no-gutters">
-                <div class="col-sm-3 col-auto text-center"><small>&#9400; Stride Softwere</small></div>
+                <div class="col-sm-3 col-auto text-center"><small>&#9400; Panpacation</small></div>
                 <div class="col-md-3 col-auto "></div>
                 <div class="col-md-3 col-auto"></div>
-                <div class="col my-auto text-md-left text-right "> <small> hello@getstride.com <span><img src="https://i.imgur.com/TtB6MDc.png" class="img-fluid " width="25"></span> <span><img src="https://i.imgur.com/N90KDYM.png" class="img-fluid " width="25"></span></small> </div>
+                <div class="col my-auto text-md-left text-right "> <small> panpacation@gmail.com <span><img src="https://i.imgur.com/TtB6MDc.png" class="img-fluid " width="25"></span> <span><img src="https://i.imgur.com/N90KDYM.png" class="img-fluid " width="25"></span></small> </div>
             </div>
         </div>
     </div>

@@ -50,7 +50,7 @@ h2.heading {
 .form-control {
     border: none;
     border-radius: 0px;
-    border-bottom: 1px solid #F2F2F2
+    border-bottom: 1px solid #FF96AD
 }
 
 .form-control::placeholder {
@@ -98,14 +98,15 @@ h2.heading {
 
 .btn-success {
     padding: 7px 40px;
-    background: #005A8D;
+    background: #FF96AD;
     border: none;
     border-radius: 0px;
-    font-size: 9px
+    font-size: 15px
 }
 
 .btn-success:hover {
-    background: #005A8D
+    opacity: 0.5;
+    background: #FF96AD;
 }
 
 .btn-success:focus {
@@ -163,10 +164,15 @@ p.exist span {
     border-radius: 0px !important;
     border-color: transparent;
     font-size: 15px;
-    padding-right: 10%;
-    padding-left: 10%;
+    padding-right: 12%;
+    padding-left: 12%;
+    margin-bottom: 30px;
+}
+
+#button-sign-in:hover{
+    opacity: 0.5;
 }
 
 #panda-welcome{
-    width: 70.5%;
+    width: 60%;
 }

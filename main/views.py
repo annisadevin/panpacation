@@ -6,6 +6,8 @@ from django.http import JsonResponse, Http404
 def set_session(request, response):
     response['is_authenticated'] = request.session.get('is_authenticated')
     response['username'] = request.session.get('username')
+    response['nama_depan'] = request.session.get('nama_depan')
+    response['nama_belakang'] = request.session.get('nama_belakang')
 
 def main(request):
     response = {}
@@ -27,89 +29,17 @@ def filterPencarian(request):
         reservasi = request.POST.get('reservasi')
         lokasi = request.POST.get('lokasi')
         jumlah = request.POST.get('jumlah')
+
+        if (check_in > check_out):
+            return redirect('/')
         print(check_in)
         print(check_out)
         print(check_out > check_in)
+        print(lokasi)
 
         return redirect('/detail/'+ check_in + '/' + check_out + '/' + reservasi + '/' + lokasi + '/' + jumlah + '/')
     return ('/')
 
-        # if(reservasi == 'Apartemen'):
-        #     print("masuk apart")
-        #     stmt = '''
-        #     SELECT A.id_penginapan
-        #     FROM APARTEMEN A, APARTEMEN_ROOM AR, TEMPAT_PENGINAPAN TP
-        #     WHERE TP.id_penginapan = A.id_penginapan AND A.id_penginapan = AR.id_apartemen
-        #     AND (AR.id_apartemen, AR.kode_room) 
-        #     NOT IN 
-        #     ((SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin >= %s) 
-        #     INTERSECT 
-        #     (SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkout <= %s))
-        #     AND TP.kabkot = %s;
-        #     '''
-        #     try:
-        #         with connection.cursor() as cursor:
-        #             cursor.execute(stmt, [check_in, check_out, lokasi])
-        #             listTempatPenginapan = cursor.fetchall()
-        #         print(listTempatPenginapan)
-        #     except:
-        #         response['error'] = 'Email atau password salah, silakan coba lagi'
-
-        # elif (reservasi == 'Villa'):
-        #     print("masuk villa")
-        #     stmt = '''
-        #     SELECT V.id_penginapan
-        #     FROM VILLA V, TEMPAT_PENGINAPAN TP
-        #     WHERE V.id_penginapan = TP.id_penginapan AND V.id_penginapan
-        #     NOT IN 
-        #     ((SELECT PV.id_villa FROM PILIHAN_VILLA PV, TRANSAKSI_PENGINAPAN TP WHERE PV.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin >= %s) 
-        #     INTERSECT 
-        #     (SELECT PV.id_villa FROM PILIHAN_VILLA PV, TRANSAKSI_PENGINAPAN TP WHERE PV.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkout <= %s))
-        #     AND TP.kabkot = %s;
-        #     '''
-        #     try:
-        #         with connection.cursor() as cursor:
-        #             cursor.execute(stmt, [check_in, check_out, lokasi])
-        #             listTempatPenginapan = cursor.fetchall()
-        # else:
-        #     print("masuk kos")
-        #     stmt = '''
-        #     SELECT K.id_penginapan
-        #     FROM KOS K, KOS_ROOM KR, TEMPAT_PENGINAPAN TP
-        #     WHERE TP.id_penginapan = K.id_penginapan AND K.id_penginapan = KR.id_kos AND 
-        #     (KR.id_kos, KR.kode_room) NOT IN 
-        #     ((SELECT PKR.id_kos, PKR.id_kode_room FROM PILIHAN_KOS_ROOM PKR, TRANSAKSI_PENGINAPAN TP WHERE PKR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin >= %s) 
-        #     INTERSECT 
-        #     (SELECT PKR.id_kos, PKR.id_kode_room FROM PILIHAN_KOS_ROOM PKR, TRANSAKSI_PENGINAPAN TP WHERE PKR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkout <= %s))
-        #     AND TP.kabkot = %s;
-        #     '''
-        #     try:
-        #         with connection.cursor() as cursor:
-        #             cursor.execute(stmt, [check_in, check_out, lokasi])
-        #             listTempatPenginapan = cursor.fetchall()
- 
-        #     return render(request, 'detail/templates/hasil_pencarian.html', response)
-
-def filterPencarian2(request):
-    if (not(request.session.get('is_authenticated'))):
-        return redirect('/login/')
-    response = {}
-    set_session(request, response)
-
-    if (request.method == 'POST'):
-        check_in = request.POST.get('check_in')
-        check_in = str(check_in) + ' 00:00:00'
-        check_out = request.POST.get('check_out')
-        check_out = str(check_out) + ' 00:00:00'
-        reservasi = request.POST.get('reservasi')
-        lokasi = request.POST.get('lokasi')
-        jumlah = request.POST.get('jumlah')
-        print(check_in)
-        print(check_out)
-        print(check_out > check_in)
-
-        return redirect('/detail/'+ check_in + '/' + check_out + '/' + reservasi + '/' + lokasi + '/' + jumlah + '/')
-    return ('/')
 
 def data_basedOnReservasi(request):
     if request.method == "POST":
@@ -138,6 +68,14 @@ def data_basedOnReservasi(request):
         with connection.cursor() as cursor:
             cursor.execute(stmt)
             listOfKota = cursor.fetchall()
+        print(listOfKota)
 
     return JsonResponse({'listKota' : listOfKota})
+
+def random(request):
+    if (not(request.session.get('is_authenticated'))):
+        return redirect('/login/')
+    response = {}
+    set_session(request, response)
+    return render(request, 'main/randomDesti.html', response)
     
