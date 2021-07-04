@@ -7,13 +7,14 @@
 {% block title %}
 Detail Pencarian
 {% endblock title%}
-
 {% block content %}
-<br><br><br><br><br><br>
+<br><br><br><br><br>
 
 <!-- container semuanya -->
-<div class="container" style="background-color: rgba(255, 255, 255, 0.653); box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);padding: 40px 40px 40px 40px">
-  
+<div class="container" style="background-color: rgba(255, 255, 255, 0.653); box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);padding: 40px 40px 40px 40px;width: 70%;" >
+  <h2 class="text-muted">APARTMENT</h2>
+  <br>
+
   <!-- buat foto -->
   <div id="mycarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
     <ol class="carousel-indicators">
@@ -25,7 +26,7 @@ Detail Pencarian
         <div class="carousel-item active"> <img src="https://images.pexels.com/photos/462024/pexels-photo-462024.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="d-block w-100" alt="..."> </div>
         <div class="carousel-item"> <img src="https://images.pexels.com/photos/258109/pexels-photo-258109.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="d-block w-100" alt="..."> </div>
         <div class="carousel-item"> <img src="https://images.pexels.com/photos/432013/pexels-photo-432013.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="d-block w-100" alt="..."> </div>
-    </div> 
+    </div>
     <a class="carousel-control-prev" href="#mycarousel" role="button" data-slide="prev">
         <div class="banner-icons"> <span class="fa fa-arrow-left"></span> </div> <span class="sr-only">Previous</span>
     </a> 
@@ -34,26 +35,24 @@ Detail Pencarian
     </a>
   </div>
   <br>
-    
+  
   <!-- buat deskripsi hotel/kos/hunian -->
   <form action='' method="POST">
     {% csrf_token %}
     <div class="forminaja">
       <div class="grid-container">
         <div style="text-align: left;">
-            <h5 class="text-muted">Hotel</h5>
-            <h2 style="font-size: 35px;">Oakwood PIK Jakarta</h2>
-            <h5 class="text-muted"><span class="fas fa-map-marker-alt"></span> Jl. Pantai Indah Barat, Pantai Indah Kapuk, Kamal Muara 14470 Jakarta <br></h5>
-            <h5 class="text-muted"><span class="fas fa-phone"></span> 021 50233333 </h5>        
+            <div class="ratings" style="font-size: 15px;margin-bottom: 10px;"><span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span></div>
+            <h4 style="font-size: 30px; margin-bottom: 10px;">Oakwood PIK Jakarta</h4>
+
+            <div class="ratings">
+            </div>
+            <h5 class="text-muted"  style="font-size: 15px;"><span class="fas fa-map-marker-alt" style="font-size: 15px;margin-bottom: 10px;" ></span> Jl. Pantai Indah Barat, Pantai Indah Kapuk, Kamal Muara 14470 Jakarta <br></h5>
+            <h5 class="text-muted"  style="font-size: 15px;"><span class="fas fa-phone" style="font-size: 15px;margin-bottom: 10px;"></span> 021 50233333 </h5>        
         </div>
-        <div style="text-align: right;">
-          <h5 class="text-muted">Rating</h5>
-          <div class="ratings">
-            <div class="form-inline d-flex justify-content-end py-2"><span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span> <span class="fas fa-star fa-lg"></span></div>
-          </div>
-          <br>
-    
-          <input type="submit" class="button" value="Beli Sekarang">
+        <div style="text-align:right;bottom: 0; right: 0;">
+          <br><Br><br>
+          <input type="submit" class="button" value="Pesan Sekarang">
         </div>
       </div>
       <br><br>
@@ -65,13 +64,13 @@ Detail Pencarian
             <form action='' method="POST">
               {% csrf_token %}
               <div class="float-container">
-                <div class="float-child"><h5 class="font-weight-bold" >Checkin</h5>
+                <div class="float-child"><h6 class="font-weight-bold" >Checkin</h6>
                   <input  type="date" class="form-control" style = "border-radius: 0px;" name="checkin" placeholder="MM/DD/YYY"/>
                 </div>
-                <div class="float-child"><h5 class="font-weight-bold" >Checkout</h5>
+                <div class="float-child"><h6 class="font-weight-bold" >Checkout</h6>
                   <input  type="date" class="form-control" style = "border-radius: 0px;" name="checkout" placeholder="MM/DD/YYY"/>
                 </div>
-                <div class="float-child"><h5 class="font-weight-bold" >Jumlah Orang</h5>
+                <div class="float-child"><h6 class="font-weight-bold" >Jumlah Orang</h6>
                   <input type="number" class="form-control" style = "border-radius: 0px;" placeholder="0" min="0" nama = "jml"> </div>
                 </div>
                 <!-- <div class="float-child">
@@ -93,20 +92,24 @@ Detail Pencarian
           <img class="img-fluid img-responsive product-image" src="https://i.ibb.co/SrDt8kg/1.jpg">
         </div>
         <div class="col-md-6 mt-1">
-          <h3>Single Bed</h3>
-          <div class="mt-1 mb-1 spec-1"><span class="fa fa-user"></span><span> 1 Dewasa</span></div>
-          <div class="mt-1 mb-1 spec-1"><span class="fa fa-bath"></span><span> Bathtub </span></div>
-          <div class="mt-1 mb-1 spec-1"><span class="fa fa-fan"></span><span> Air Conditioner </span></div>
-          <div class="mt-1 mb-1 spec-1"><span class="fa fa-hot-tub"></span><span> Air Hangat </span></div>
+          <br>
+          <h5>Ruangan King-King</h5>
+          <div class="all" style="font-size: 10px;">
+            <span class="fa fa-user"></span><span class="faci"> 1 Dewasa</span> <br>
+            <span class="fa fa-bath"></span><span  class="faci"> Bathtub </span> <br>
+            <span class="fa fa-fan"></span><span  class="faci"> Air Conditioner </span><br>
+            <span class="fa fa-hot-tub"></span><span  class="faci"> Air Hangat </span>
+          </div>
         </div>
         <div class="align-items-right col-md-3 border-left mt-1" style="text-align:right;">
+          <!-- <input type="submit" class="button" value="Tambahkan"> -->
+          <form action='' method="POST">
+            {% csrf_token %}
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+          </form>
           <div class="kanan" style="position: absolute;bottom: 0;right: 0;padding: 7px 10px 10px 10px;">
-            <form action='' method="POST">
-              {% csrf_token %}
-              <h3 style="text-align: right;">Rp 120.000</h3>
-              <input type="submit" class="button" style="font-size: 18px;padding:10px 30px;" value="Tambahkan">
-            </form>
-          </div> 
+            <h4 style="text-align: right;">Rp 120.000</h4>
+          </div>
       </div>
     </div>
   </div>
@@ -149,7 +152,7 @@ Detail Pencarian
     <div class="col-md-12" >
       <div class="row p-2 bg-white " style=" box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);">
         <h3 class="text-muted" style="text-align: center;"><br>MAP<br><br></h3><br>
-        <div id="map"></div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.95040012250698!2d106.74027482564287!3d-6.102883764354289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1d0777957fb5%3A0xbb4f4df6ecfe77d2!2sOakwood%20Apartments%20PIK%20Jakarta!5e0!3m2!1sen!2sid!4v1625292634429!5m2!1sen!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
       <br>
     </div>
@@ -167,41 +170,13 @@ Detail Pencarian
                 <div class="mt-2"> 
                   <span class="fas fa-star active-star"></span> <span class="fas fa-star active-star"></span> <span class="fas fa-star active-star"></span> <span class="fas fa-star active-star"></span> <span class="fas fa-star-half-alt active-star"></span> 
                 </div>
-                <div class="main font-weight-bold pb-2 pt-1">
+                <div class="main font-weight-bold pb-2 pt-2" style="font-size: 15px;">
                   Great Service
                 </div>
-                <div class="testimonial"> 
+                <div class="testimonial" style="font-size: 10px;"> 
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni dolores molestias veniam inventore itaque eius iure omnis, temporibus culpa id. 
                 </div>
-                <div class="d-flex flex-row profile pt-4 mt-auto"> <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" class="rounded-circle">
-                  <div class="d-flex flex-column pl-2">
-                    <div class="name">
-                      Megan
-                    </div>
-                    <p class="text-muted designation">CEO of My Company</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="owl-item">
-              <div class="cardd d-flex flex-column">
-                <div class="mt-2"> 
-                  <span class="fas fa-star active-star"></span> <span class="fas fa-star active-star"></span> <span class="fas fa-star active-star"></span> <span class="fas fa-star active-star"></span> <span class="fas fa-star-half-alt active-star"></span> 
-                </div>
-                <div class="main font-weight-bold pb-2 pt-1">
-                  Great Service
-                </div>
-                <div class="testimonial"> 
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni dolores molestias veniam inventore itaque eius iure omnis, temporibus culpa id. 
-                </div>
-                <div class="d-flex flex-row profile pt-4 mt-auto"> <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" class="rounded-circle">
-                  <div class="d-flex flex-column pl-2">
-                    <div class="name">
-                      Megan
-                    </div>
-                    <p class="text-muted designation">CEO of My Company</p>
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>

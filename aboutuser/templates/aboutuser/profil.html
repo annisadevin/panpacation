@@ -32,11 +32,11 @@
                             </div>
 
                             <div class="profile-content">
-                                <div class="profile-name">Santosh Ghimire</div>
-                                <div class="profile-designation">Webdeveloper</div>
+                                <div class="profile-name">{{nama_depan}} {{nama_belakang}}</div>
+                                <div class="profile-designation">{{username}}</div>
                                 <ul class="profile-info-list">
-                                    <a href="" class="profile-info-list-item"><i class="mdi mdi-eye"></i>Homepage</a>
-                                    <a href="" class="profile-info-list-item"><i class="mdi mdi-eye"></i>All Feeds</a>
+                                    <a href="{% url 'main:main'%}" class="profile-info-list-item"><i class="mdi mdi-eye"></i>Homepage</a>
+                                    <a href="{% url 'feeds:feeds'%}" class="profile-info-list-item"><i class="mdi mdi-eye"></i>All Feeds</a>
                                 </ul>
                             </div>
                         </div>
@@ -129,6 +129,7 @@
                                         <div class="d-flex justify-content-left align-items-center">
                                             <h6>List Pesanan Anda</h6>
                                         </div>
+                                        {% for transaksi in listTransaksi %}
                                         <div class="card" width="100%">
                                             <div class="row no-gutters">
                                               <div class="col-md-4 card-body d-flex justify-content-center align-items-start">
@@ -151,6 +152,7 @@
                                               </div>
                                             </div>
                                         </div>
+                                        {%endfor%}
                                     </div>
                                     <!-- LIST PESANAN -->
 

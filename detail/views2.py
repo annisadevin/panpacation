@@ -7,7 +7,6 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from collections import namedtuple
 
-def detail_pencarian(request):
-    namap = request.POST.get('checkin', None)
-    print(namap)
+def detailpencarian(request, id, checkin, checkout, jml):
+    print("aaaaaaaaaaaaaaaa")
     return render(request,'detail_pencarian.html') 

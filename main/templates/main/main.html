@@ -3,96 +3,181 @@
 
 {%block style%}
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
 <title> Homepage </title>
 {%endblock style%}
 
 {% block content %}
-<!-- Jumbotron -->
-<section id="header-judul">
-    <div class="d-flex justify-content-center align-items-center" id="pertanyaan-judul">
-        <h2 class="font-weight-light"> Mau staycation kemana? </h2>
-    </div>
-</section>
-<section>
-    <div id="jumbotron" class="p-5 bg-image rounded-3">
-        <div class="d-flex justify-content-center align-items-center h-100">
-            <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active" data-interval="10000">
-                    <img id="foto-promo" src="{% static 'main/img/Promo1.png' %}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item" data-interval="2000">
-                    <img id="foto-promo" src="{% static 'main/img/Promo2.png' %}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img id="foto-promo" src="{% static 'main/img/Promo3.png' %}" class="d-block w-100" alt="...">
-                  </div>
+<section id="jumbotron">
+    <header>
+        <div id="indicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#indicators" data-slide-to="0" class="active"></li>
+                <li data-target="#indicators" data-slide-to="1"></li>
+                <li data-target="#indicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <!-- Slide One - Set the background image for this slide in the line below -->
+                <div id="header1" class="carousel-item active">
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
+                </div> <!-- Slide Two - Set the background image for this slide in the line below -->
+                <div id="header2" class="carousel-item">
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
+                </div> <!-- Slide Three - Set the background image for this slide in the line below -->
+                <div id="header3" class="carousel-item">
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-            </div>
+            </div> <a class="carousel-control-prev" href="#indicators" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#indicators" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
         </div>
-    </div>
+    </header>
+
 </section>
 
 <section id="homepage-form">
-    <div class="container shadow d-flex justify-content-center align-items-center" id="container-form-homepage">
-        <form class="homepage-form">
+    <div class="container d-flex justify-content-center align-items-center card shadow" id="container-form-homepage">
+        <form class="homepage-form" action="{% url 'main:filterPencarian'%}" method="POST">
+            {% csrf_token %}
+            <h2 class="font-weight-light text-center mb-5"> Mau staycation kemana? </h2>
             <div class="row">
               <div class="col">
                 <label>Check In:</label>
-                <input type="date" class="form-control" placeholder="Check In">
+                <input type="date" class="form-control" placeholder="Check In" name="check_in" required>
               </div>
               <div class="col">
                 <label>Check Out:</label>
-                <input type="date" class="form-control" placeholder="Check Out">
+                <input type="date" class="form-control" placeholder="Check Out" name="check_out" required>
+              </div>
+              <div class="col">
+                <label>Reservasi: </label>
+                <select class="form-control" name="reservasi" id="select-reservasi" required>
+                    <option value="">Pilih Reservasi</option>
+                    <option value="Apartemen">Apartemen</option>
+                    <option value="Villa">Villa</option>
+                    <option value="Kost">Kost</option>
+                </select>
               </div>
               <div class="col">
                 <label>Lokasi: </label>
-                <select class="form-control">
-                    <option value="Jakarta">Jakarta</option>
+                <select class="form-control" name="lokasi" id="select-lokasi" required>
+                    <option value="">Pilih Provinsi</option>
                 </select>
               </div>
               <div class="col">
                 <label>Jumlah: </label>
-                <input type="text" class="form-control" placeholder="3">
+                <input type="text" class="form-control" placeholder="3" name="jumlah" required>
               </div>
             </div>
             <div class="d-flex justify-content-end align-items-start">
-                <button id="button-check-ketersediaan" type="button" class="mt-5 btn btn-light">Check Ketersediaan</button>
+                <button id="button-check-ketersediaan" type="submit" class="mt-5 btn btn-light">Check Ketersediaan</button>
             </div>
         </form>
     </div>
 </section>
 
 <section id="pilihan-navigasi" class="p-4">
-    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-        <div class="col mt-5">
-            <a href="#">
-                <img id="foto-pilih-navigasi" src="{% static 'main/img/Hotel.png' %}" class="card-img" alt="..."/>
-                <div class="centered">Hotel</div>
-            </a>
-        </div>
-        <div class="col mt-5">
-            <a href="#">
-                <img id="foto-pilih-navigasi" src="{% static 'main/img/Villa.png' %}" class="card-img" alt="..."/>
-                <div class="centered">Villa</div>
-            </a>
-        </div>
-        <div class="col mt-5">
-            <a href="#">
-                <img id="foto-pilih-navigasi" src="{% static 'main/img/Kost.png' %}" class="card-img" alt="..."/>
-                <div class="centered">Kost</div>
-            </a>
+    <div class="col justify-content-center align-items-center">
+        <h5 class="text-center">Fasilitas Reservasi</h5>
+        <hr>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-5" id="list-reservasi">
+            <div class="col mt-5">
+                <a href="/detail/apartemen/">
+                    <img id="foto-pilih-navigasi" src="{% static 'main/img/Hotel.png' %}" class="card-img" alt="..."/>
+                    <div class="centered">Apartemen</div>
+                </a>
+            </div>
+            <div class="col mt-5">
+                <a href="/detail/villa/">
+                    <img id="foto-pilih-navigasi" src="{% static 'main/img/Villa.png' %}" class="card-img" alt="..."/>
+                    <div class="centered">Villa</div>
+                </a>
+            </div>
+            <div class="col mt-5">
+                <a href="/detail/kost/">
+                    <img id="foto-pilih-navigasi" src="{% static 'main/img/Kost.png' %}" class="card-img" alt="..."/>
+                    <div class="centered">Kost</div>
+                </a>
+            </div>
         </div>
     </div>
 </section>
+
+<section id="service">
+    <div class="lightbox-gallery">
+        <div class="container">
+            <div class="row photos card col">
+                <h5 class="text-center mt-5">Layanan yang Kami Tawarkan</h5>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3 item">
+                        <img class="img-fluid" src="{% static 'main/img/TestCovid.png' %}">
+                        <p>Test Covid</p>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3 item">
+                        <img class="img-fluid" src="{% static 'main/img/NearHotel.png' %}">
+                        <p>Near Penginapan</p>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3 item">
+                        <img class="img-fluid" src="{% static 'main/img/MudahReservasi.png' %}">
+                        <p>Kemudahan Reservasi</p>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3 item ">
+                        <img class="img-fluid" src="{% static 'main/img/Diskon.png' %}">
+                        <p>Promo Special</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="row justify-content-center mb-0 pt-5 pb-0 row-2 px-3">
+        <div class="col-12">
+            <div class="row row-2">
+                <div class="col-sm-3 text-md-center">
+                    <h5><span> <i class="fa fa-firefox text-light" aria-hidden="true"></i></span><b> Stride</b></h5>
+                </div>
+                <div class="col-sm-3 my-sm-0 mt-5">
+                    <ul class="list-unstyled">
+                        <li class="mt-0">Platform</li>
+                        <li>Help Center</li>
+                        <li>Security</li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 my-sm-0 mt-5">
+                    <ul class="list-unstyled">
+                        <li class="mt-0">Customers</li>
+                        <li>Use Cases</li>
+                        <li>Customers Services</li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 my-sm-0 mt-5">
+                    <ul class="list-unstyled">
+                        <li class="mt-0">Company</li>
+                        <li>About</li>
+                        <li>Careers- <span class="Careers">We're-hiring</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-0 pt-0 row-1 mb-0 px-sm-3 px-2">
+        <div class="col-12">
+            <div class="row my-4 row-1 no-gutters">
+                <div class="col-sm-3 col-auto text-center"><small>&#9400; Stride Softwere</small></div>
+                <div class="col-md-3 col-auto "></div>
+                <div class="col-md-3 col-auto"></div>
+                <div class="col my-auto text-md-left text-right "> <small> hello@getstride.com <span><img src="https://i.imgur.com/TtB6MDc.png" class="img-fluid " width="25"></span> <span><img src="https://i.imgur.com/N90KDYM.png" class="img-fluid " width="25"></span></small> </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <script src="{% static 'main/javascript/main.js' %}" type="text/javascript"></script>
 {% endblock content %}
