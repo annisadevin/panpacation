@@ -41,7 +41,7 @@ Hasil Pencarian
     </div>
 
     <!-- BANYAKNYA PENCARIAN, NANTI DITAMPILIN PAKE PINK2 -->
-    </span> <span class="pink-label px-md-2 px-1" style="border-radius: 0px;background-color: #FF96AD;color: white;">1</span> <span class="text-muted">Tempat Staycation</span>
+    </span> <span class="pink-label px-md-2 px-1" style="border-radius: 0px;background-color: #FF96AD;color: white;">{{ jumlah.0.count }}</span> <span class="text-muted">Tempat Staycation</span>
     <br><br>
     <!-- BUAT TOOGLE MOBILE FILTER
     <div class="filters"> 
@@ -61,29 +61,51 @@ Hasil Pencarian
                     <h5 class="font-weight-bold">FILTER</h5>
                 </div>
                 <div class="py-3">
-                    <h5 class="font-weight-bold">Kota</h5>
+                    <h5 class="font-weight-bold">Lokasi</h5>
                     <div class="rating">
                         <div class="form-inline d-flex align-items-center py-2"> 
                             <label class="tick">Jabodetabek
-                                <input type="checkbox" name="jabodetabek" value="jabodetabek"> 
+                                <input type="checkbox" name="lokasi" value="jabodetabek"> 
                                 <span class="check"></span> 
                             </label> 
                         </div>
                         <div class="form-inline d-flex align-items-center py-2"> 
-                            <label class="tick">DKI Jakarta
-                                <input type="checkbox" name="jakarta" value="jakarta"> 
+                            <label class="tick">Jawa Barat
+                                <input type="checkbox" name="lokasi" value="jawaBarat"> 
                                 <span class="check"></span> 
                             </label> 
                         </div>
                         <div class="form-inline d-flex align-items-center py-2"> 
                             <label class="tick">Jawa Tengah
-                                <input type="checkbox" name="jateng" value="jateng"> 
+                                <input type="checkbox" name="lokasi" value="jawaTengah"> 
                                 <span class="check"></span> 
                             </label> 
                         </div>
-
-                        <!-- lanjutin -->
-
+                        
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick">Jawa Timur
+                                <input type="checkbox" name="lokasi" value="jawaTimur"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick">Banten
+                                <input type="checkbox" name="lokasi" value="banten"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick">Yogyakarta
+                                <input type="checkbox" name="lokasi" value="yogyakarta"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
+                        <div class="form-inline d-flex align-items-center py-2"> 
+                            <label class="tick">Bali
+                                <input type="checkbox" name="lokasi" value="bali"> 
+                                <span class="check"></span> 
+                            </label> 
+                        </div>
                     </div>    
                 </div>
                 <div class="py-3">
@@ -96,7 +118,7 @@ Hasil Pencarian
                                 <span class="fas fa-star"></span> 
                                 <span class="fas fa-star"></span> 
                                 <span class="fas fa-star"></span> 
-                                <input type="checkbox" name="bintang5" value="5"> 
+                                <input type="checkbox" name="bintang" value="5"> 
                                 <span class="check"></span> 
                             </label> 
                         </div>
@@ -107,7 +129,7 @@ Hasil Pencarian
                                 <span class="fas fa-star"></span> 
                                 <span class="fas fa-star"></span> 
                                 <span class="far fa-star px-1 text-muted"></span> 
-                                <input type="checkbox" name="bintang4" value="4"> 
+                                <input type="checkbox" name="bintang" value="4"> 
                                 <span class="check"></span> 
                             </label> 
                         </div>
@@ -118,7 +140,7 @@ Hasil Pencarian
                                 <span class="fas fa-star"></span> 
                                 <span class="far fa-star px-1 text-muted"></span> 
                                 <span class="far fa-star px-1 text-muted"></span> 
-                                <input type="checkbox" name="bintang3" value="3"> 
+                                <input type="checkbox" name="bintang" value="3"> 
                                 <span class="check"></span> 
                             </label> 
                         </div>
@@ -128,7 +150,7 @@ Hasil Pencarian
                                 <span class="far fa-star px-1 text-muted"></span> 
                                 <span class="far fa-star px-1 text-muted"></span> 
                                 <span class="far fa-star px-1 text-muted"></span> 
-                                <input type="checkbox" name="bintang2" value="2"> 
+                                <input type="checkbox" name="bintang" value="2"> 
                                 <span class="check"></span> 
                             </label> 
                         </div>
@@ -139,7 +161,7 @@ Hasil Pencarian
                                 <span class="far fa-star px-1 text-muted"></span> 
                                 <span class="far fa-star px-1 text-muted"></span> 
                                 <span class="far fa-star px-1 text-muted"></span> 
-                                <input type="checkbox" name="bintang1" value="1"> 
+                                <input type="checkbox" name="bintang" value="1"> 
                                 <span class="check"></span> 
                             </label> 
                         </div>
@@ -157,19 +179,20 @@ Hasil Pencarian
                     <div class="form-row" >
                         <div class="form-group col-md-6"> 
                             <label>Min</label> 
-                            <input type="number" class="form-control" style = "border-radius: 0px;" placeholder="Rp 0" min = "0" nama="min"> 
+                            <input class="form-control" style = "border-radius: 0px;" placeholder="0" min = "0" name="priceMin"> 
                         </div>
-                        <div class="form-group text-right col-md-6"> 
+                        <div class="form-group col-md-6">
                             <label>Max</label> 
-                            <input type="number" class="form-control" style = "border-radius: 0px;" placeholder="Rp 100000000" min="0" nama="max"> </div>
+                            <input class="form-control" style = "border-radius: 0px;" placeholder="100000" min="0" name="priceMax">
+                        </div>
                     </div>
                     <br>   
                     <div class="form-row" >
-                        <div class="form-group col-md-6"> 
+                        <div class="form-group col-md-6">
                             <!-- dibiarin kosong, biar rapi -->
                         </div>
                         <div class="form-group text-right col-md-6"> 
-                            <input type="submit" class="button" style = "border-radius: 0px;font-size: 17px;padding: 7px 9px;text-align: right;" value="Terapkan">
+                            <input type="submit" class="button" style = "border-radius: 0px;font-size: 17px;padding: 7px 9px;text-align: right;" value="Cari">
                     </div>
                     <br><br>
                 </div>
@@ -177,32 +200,67 @@ Hasil Pencarian
         </form>
 
         <!-- HOTEL Section -->
+        
         <section id="products">
             <div class="container py-3">
                 <div class="row">
+                    {% for r in res %}
                     <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                        <div class="card"> <img class="card-img-top" src="https://i.ibb.co/TwyhxCF/250857360.jpg"> <a href="#"></a>
+                        <div class="card"> <img class="card-img-top" src="{{ r.link }}"> <a href="#"></a>
                             <a href="http://www.google.com/" style="text-decoration: none;color: #000;">
                                 <div class="card-body">
-                                <h5 class="font-weight-bold pt-1">Oakwood PIK Jakarta</h5>
-                                <div class="text-muted description"> <span class="fas fa-map-marker-alt" style="margin-right: 10px;"></span>Penjaringan, Jakarta Utara</div>
-                                <div class="d-flex align-items-center product"> 
+                                <h5 class="font-weight-bold pt-1">{{ r.nama }}</h5>
+                                <div class="text-muted description"> <span class="fas fa-map-marker-alt" style="margin-right: 10px;"></span>{{ r.alamat_lengkap }}</div>
+                                <div class="d-flex align-items-center product">
                                     <div class="productstar">
-                                        <span class="fas fa-star" style="color: #FF96AD;"></span> 
+                                        {% if r.rating == 5 %} 
                                         <span class="fas fa-star"></span> 
                                         <span class="fas fa-star"></span> 
                                         <span class="fas fa-star"></span> 
-                                        <span class="far fa-star"></span> 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="fas fa-star"></span> 
+                                        {% elif r.rating == 4 %} 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        {% elif r.rating == 3 %} 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        {% elif r.rating == 2 %} 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        {% elif r.rating == 1 %} 
+                                        <span class="fas fa-star"></span> 
+                                        <span class="far fa-star px-1 text-muted"></span> 
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        {% elif r.rating == 0 %} 
+                                        <span class="far fa-star px-1 text-muted"></span> 
+                                        <span class="far fa-star px-1 text-muted"></span> 
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        <span class="far fa-star px-1 text-muted"></span>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between pt-3">
-									<div class="h4 font-weight-bold">Rp 120.000</div>
+									<div class="h4 font-weight-bold">Rp{{ r.harga_termurah }}</div>
                                 </div>
                             </div>
                             </a> 
                             
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
