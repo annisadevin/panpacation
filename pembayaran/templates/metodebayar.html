@@ -19,19 +19,77 @@ Metode Bayar
                 <h1>Rincian Pembayaran</h1>
                 <br><br>
                 <!-- ubah sesuai data yg ada {{ data.}}-->
-                <div style="font-size: 20px;color:#6C757D;">
-                    <div>Nama Pemesan: Khusnul Khotimah</div>
-                    <div>Nama Hotel: Oakwood PIK Jakarta</div>
-                    <div>Lokasi: Jl. Pantai Indah Barat, Pantai Indah Kapuk, Kamal Muara 14470 Jakarta</div>
-                    <div>Tanggal Masuk: Selasa, 21 Juni 2021</div>
-                    <div>Tanggal Keluar: Kamis, 23 Juni 2021</div>
-                    <div>Durasi: 2 Hari</div>
-                    <div>Bed: Single Beds</div>
-                    <div>Total Test COVID-19: 2</div>
-                </div>
+                <table style="font-size: 20px;color:#6C757D;">
+                    <tr>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>Nama Pemesan</h6>
+                      </td>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>{{ nama_pemesan }}</h6>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>Nama Penginapan</h6>
+                      </td>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>{{ nama_penginapan }} </h6>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>Tanggal Check In</h6>
+                      </td>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>{{ tgl_checkin }} </h6>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>Tanggal Check Out</h6>
+                      </td>
+                      <td>
+                        <h6 style="text-align: left;margin-left: 20px;"><br>{{ tgl_checkout }} </h6>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>
+                          <h6 style="text-align: left;margin-left: 20px;"><br>Durasi</h6>
+                        </td>
+                        <td>
+                          <h6 style="text-align: left;margin-left: 20px;"><br>{{ durasi }} </h6>
+                        </td>
+                    </tr>
+                  </table>
+
+                  <table>
+                    <tr>
+                        <td>
+                            <h5 style="text-align: left;margin-left: 20px;"><br>Total Harga Penginapan</h5>
+                            
+                        </td>
+                        <td>
+                            <h5 style="text-align: left;margin-left: 20px;"><br>{{ total_harga_penginapan }}</h5>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <h5 style="text-align: left;margin-left: 20px;"><br>Total Harga Test Covid</h5>
+                            
+                        </td>
+
+                        <td>
+                            <h5 style="text-align: left;margin-left: 20px;"><br>{{ total_test_covid }}</h5>
+                            
+                        </td>
+                    </tr>
+                    
+                  </table>
+                  <h3 style="text-align: right;">Total Harga</h3>
+                    <h1 style="text-align: right;"> {{ total_semua }}</h1>
                 <br>
-                <h3 style="text-align: right;">Total Harga</h3>
-                <h1 style="text-align: right;"> Rp 2.000.000</h1>
+                
             </div>
         </div>
         
@@ -69,7 +127,7 @@ Metode Bayar
                         <h4>Virtual Account Pembayaran:</h4>
                         <dl>
                         <dt>No. VA</dt>
-                        <dd>1212100923723827</dd>
+                        <dd>121 {{ no_telp }}</dd>
                             <br><br>
 
                             <!-- SELESAI: redirect ke receipt-->
@@ -81,7 +139,8 @@ Metode Bayar
                             </form> 
 
                             <!-- KEMBALI: redirect ke buat pesanan-->
-                            <a href="http://www.google.com/">
+                           
+                            <a href="{% url 'pembayaran:buatpesanan' id_penginapan=id_penginapan tgl_checkin=tgl_checkin tgl_checkout=tgl_checkout total_penginap=total_penginap %}">
                                 <input type="button" class="buttonB" value="Kembali" style="font-size: 15px;padding: 10spx 80px; text-align: right;float:right">
                             </a>                             
                             
@@ -96,15 +155,15 @@ Metode Bayar
                         <br>
                         <h4>Transfer ke Akun Bank:</h4>
                         <dl>
-                            <dt>Bank</dt>
+                            <dt>Nama Bank</dt>
                             <dd>THE PACBANK</dd>
                         </dl>
                         <dl>
-                            <dt>Nomor Akun</dt>
-                            <dd>12912712122</dd>
+                            <dt>Atas Nama</dt>
+                            <dd>Panpac Company</dd>
                         </dl>
                         <dl>
-                            <dt>Khusnul Khotimah</dt>
+                            <dt>Nomor Rekening</dt>
                             <dd>101281212192</dd>
                             
                             <!-- SELESAI: redirect ke receipt -->
@@ -116,9 +175,11 @@ Metode Bayar
                             </form> 
 
                             <!-- KEMBALI: redirect ke buat pesanan-->
-                            <a href="http://www.google.com/">
+                           
+                            <a href="{% url 'pembayaran:buatpesanan' id_penginapan=id_penginapan tgl_checkin=tgl_checkin tgl_checkout=tgl_checkout total_penginap=total_penginap %}">
                                 <input type="button" class="buttonB" value="Kembali" style="font-size: 15px;padding: 10spx 80px; text-align: right;float:right">
                             </a>                             
+                                                   
                         </dl>
                         <br><br><br>
                     </div>

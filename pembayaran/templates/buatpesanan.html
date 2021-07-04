@@ -3,7 +3,8 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/universal.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/pembayaran.css' %}" />  
+    <link rel="stylesheet" href="{% static 'css/pembayaran.css' %}" /> 
+    
 {% endblock css %}
 
 {% block title %}
@@ -98,45 +99,99 @@ Buat Pesanan Pencarian
             <div class="row p-2 bg-white " style=" box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);">
               <h2 style="text-align: left;margin-left: 20px;"><br>Data Pemesan</h2>
               <div class="float-container">
+                
                 <div class="float-child"><h5 class="font-weight-bold" style="text-align: left;">Nama</h5>
-                  <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="Nama" name="namapemesan" value="{{ nama_pemesan }}"><br>
+                  <input type="text" class="form-control" style = "border-radius: 0px;" value="{{ data_pemesan.nama_depan }} {{ data_pemesan.nama_belakang }}" disabled><br></input>
                 </div>
                 <div class="float-child"><h5 class="font-weight-bold" style="text-align: left;">NIK/Passport</h5>
-                  <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="NIK/Passport" name="nikpassport"><br>
+                  <input type="text" class="form-control" style = "border-radius: 0px;" value="{{ data_pemesan.no_id }}" disabled><br></input>
                 </div>
                 <div class="float-childs"><h5 class="font-weight-bold" style="text-align: left;">No. Telepon</h5>
-                  <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="No. Telepon" name="notelepon"><br>
+                  <input type="text" class="form-control" style = "border-radius: 0px;" value="{{ data_pemesan.no_telp }}" disabled><br></input>
                 </div>
+                
               </div>
     
             </div>
             <br>
           </div>
         </div>
-    
+        
+
         <!-- buat data tamu, nanti di-loop di sini sesuai jumlah  -->
         <div class="outer">
+
           <div class="col-md-12" >
             <div class="row p-2 bg-white  " style=" box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);">
               <h2 style="text-align: left;margin-left: 20px;"><br>Data Tamu</h2>
-              <form method="post">
+              
                 <div class="float-container">
-                  <div class="float-child text-kiri">
-                    Jumlah Tamu: {{ total_penginap }}
+                  <div class="float-child text-kiri">Jumlah Tamu: {{ total_penginap }}</div>
+                </div>
+                <div class="float-container" style="padding-top: 0px;">
+
+                  <!-- Trigger the modal with a text link -->
+                  <div style="padding-left: 20px;">Tambahkan data tamu terlebih dahulu <a id="klik-disini" class="text-tombol" data-toggle="modal" data-target="#modal_data" href="#">klik disini</a></div>
+                  <br>
+                  <div style="padding-left: 20px;">Pastikan data tamu ke 1, 2, 3, ..., n adalah data tamu yang berbeda</div>
+                  <!-- Modal -->
+                  <div class="modal fade" id="modal_data">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" style="margin: 4px;">+</button>
+                          
+                          <h4 class="modal-title" style="width: 100%; text-align: center;">Tambahkan Data Tamu</h4>
+                        </div>
+                        <div class="modal-body">
+                          <h5 style="text-align: center;">Berikut adalah data tamu Anda yang tersimpan dalam database Panpacation</h5>
+                          <table style="width: 100%;">
+                            <tr>
+                              <th>Nama</th>
+                              <th>NIK/Passport</th>
+                            </tr>
+                            {% for row in tanggungan %}
+                            <tr>
+                              <td>{{ row.nama }}</td>
+                              <td>{{ row.no_id }}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                              <td><input type="text" class="form-control" placeholder="Nama" name="nama_modal"></td>
+                              <td><input type="text" class="form-control" placeholder="NIK/Passport" name="id_modal"></input></td>
+                            </tr>
+                          </table>
+                          <br><br>
+                          <input id="submit_modal" type="submit" class="button" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right" value="Submit"></input>
+                          <br>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"></button>
+                      </div>
+                      
+                    </div>
                   </div>
                   
                 </div>
-                <div class="float-container">
-                  {% for i in  %}
-                  <div class="float-child"><h5 class="font-weight-bold" style="text-align: left;">Nama</h5>
-                    <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="Nama" name="namatamu"><br>
-                  </div>
-                  <div class="float-child"><h5 class="font-weight-bold" style="text-align: left;">NIK/Passport</h5>
-                    <input type="text" class="form-control" style = "border-radius: 0px;" placeholder="NIK/Passport" name="niktamu"><br>
+                <div class="float-container"> 
+                  <div class="float-child-2 text-kiri"><h5 class="font-weight-bold"">Tamu ke-</h5></div>
+                  <div class="float-child-2"><h5 class="font-weight-bold" style="text-align: left;">Nama</h5></div>
+                  
+                  {% for i in list_penginap %}
+                 
+                  <div class="float-child-2 text-kiri" style="padding-left: 36px;">{{i}}</div>
+                  
+                  <div class="float-child-2">
+                    <select class="form-control" style = "border-radius: 0px;" placeholder="Nama">
+                      <option value = "--pilih nama tamu--;margin-left: 15px;">--pilih nama tamu--</option>
+                      <option value = "{{ data_pemesan.nama_depan }}{{ data_pemesan.nama_belakang }};margin-left: 15px;">{{ data_pemesan.nama_depan }} {{ data_pemesan.nama_belakang }}</option>
+                      {% for row in tanggungan %}
+                      <option value = "{{row.nama}};margin-left: 15px;">{{ row.nama }}</option>
+                      {% endfor %}
+                    </select>
                   </div>
                   {% endfor %}
                 </div>
-              </form>
             </div>
             <br>
             </div>
@@ -144,19 +199,15 @@ Buat Pesanan Pencarian
           </div>
           
         </div>
-        <div class="d-flex flex-column">
-          <div class="p-2"><h2 style="text-align: center;">Apakah Anda ingin Memesan TEST COVID?</h2></div>
-          <div class="p-2 tombol-tengah">
-            <input type="submit" class="button" style="font-size: 20px; text-align: center;float:right" value="YA">
-            <input type="button" class="buttonB" style="font-size: 20px; text-align: center;float:right" value="TIDAK">
-
-          </div>
+        <div class="d-flex flex-column" id='tanya-covid'>
+          <div class="p-2"><h2 style="text-align: center;">Jika Anda ingin Memesan TEST COVID, maka silahkan isi data terlebih dahulu.</h2></div>
+          <div class="p-2"><h5 style="text-align: center;">Jika tidak berkenan, maka lewatkan saja form di bawah ini</h5></div>
+          
         </div>
 
         <br><br>
-        
         <!-- untuk testcovid  -->
-        <div class="outer" name="test-covid-section">
+        <div class="outer" name="test-covid-section" id="test-covid-section">
           <div class="col-md-12" >
             <div class="row p-2 bg-white  " style=" box-shadow: -2px 1px 11px rgba(0, 0, 0, 0.047);">
               <h2 style="text-align: left;margin-left: 35px;"><br>Detail mengenai TEST COVID-19</h2>
@@ -165,57 +216,47 @@ Buat Pesanan Pencarian
               <!-- CHECKBOX buat valuenya selarasin sama data (ganti "satu", misal pake NIK(?))-->
               <!-- loop juga sesuai jumlah tamu-nya -->
               <div class="float-container" style="margin-left: 62px;">
+                {% for i in list_penginap %}
                   <div class="form-inline d-flex align-items-center py-2"> 
-                    <label class="tick" style="font-size:20px"> Pemesan
-                      <input type="checkbox" name="testcovidsatu" value="satu"> 
+                    <label class="tick" style="font-size:20px"> Tamu ke - {{ i }}
+                      <input type="checkbox" name="testcovid{{i}}" id="testcovid{{i}}" value="satu"></input>
                       <span class="check check-box-center"></span> 
-                    </label> 
+                    </label>
                   </div>
-                  <div class="form-inline d-flex align-items-center py-2"> 
-                    <label class="tick" style="font-size:20px"> Pemesan
-                      <input type="checkbox" name="testcovidsatu" value="satu"> 
-                      <span class="check check-box-center"></span> 
-                    </label> 
-                  </div>
+                {% endfor %}
               </div>
-  
   
               <!-- DROPDOWN -->
               <!-- Loop juga sesuai yang ada -->
               <h4 style="text-align: left;margin-left: 35px;"><br> B. Pilih Test COVID</h4>
               <div class="float-container" style="margin-left: 5px;">
                 <div class="float-container">
-                  <div class="float-childd" style="padding-top: 1px;"><h5 class="font-weight-bold" style="text-align: left;margin-left: 15px;">Jenis Test</h5>
-                    <select class="form-control" style = "border-radius: 0px;margin-left: 15px;" placeholder="Jenis" name = "jenistest" >
-                      <option value = "antigen;margin-left: 15px;">Antigen</option>
-                      <option value = "pcr;margin-left: 15px;">PCR</option>
+                  <div class="float-childm" style="padding-top: 1px;"><h5 class="font-weight-bold" style="text-align: left;margin-left: 15px;">Lokasi, Jenis Test, Harga</h5>
+                    <select id='test-terpilih' class="form-control" style = "border-radius: 0px;margin-left: 15px;" placeholder="TEST Covid" name="test-terpilih">
+                      {% for row in test_covid_avail %}
+                      
+                      <option value = "{{row.harga}}">{{ row.kabkot }}, {{ row.jenis_test }}, {{ row.harga }}</option>
+                      {% endfor %}
                     </select>
                   </div> 
-                  <div class="float-childd" style="padding-top: 1px;"><h5 class="font-weight-bold" style="text-align: left;">Tempat</h5>
-                    <select class="form-control" style = "border-radius: 0px;"placeholder="Tempat" name = "tempattest"> 
-                      <option value = "jakarta">Jakarta</option>
-                      <option value = "malang">Malang</option>
-                      <option value = "ngawi">Ngawi</option>
-                      <option value = "bandung">Bandung</option>
-                    </select>
-                  </div>
+
                 </div>
               </div>
               <br>
             </div>
+            <br><br>
+            
+          </div>
+
+          <!-- UNTUK SUBMIT ATAU KEMBALI -->
+          <div>
+            <input type="submit" class="button" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right" value="Submit"></input>
+            <a href="http://www.google.com/">
+            <input type="button" class="buttonB" value="Kembali" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right"></input>
+            </a> 
           </div>
         </div>
-          
-        <!-- UNTUK TOTAL HARGA -->
-        <br><br>
-        <h3 style="text-align: left;margin-left: 60px;">Total Harga:</h3>
-        <h1 style="text-align: left;margin-left: 60px;"> Rp 2.000.000</h1>
-
-        <!-- UNTUK SUBMIT ATAU KEMBALI -->
-        <input type="submit" class="button" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right" value="Submit">
-        <a href="http://www.google.com/">
-          <input type="button" class="buttonB" value="Kembali" style="font-size: 20px;padding: 10spx 80px; text-align: right;float:right">
-        </a> 
+        
         <br><br><br>
       </div>
     </form>
@@ -225,9 +266,20 @@ Buat Pesanan Pencarian
 {% endblock content %}
 
 {% block js %}
-<script src="{% static 'js/buatpesanan.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script>
+  $("#submit_modal").click(function() {  
+    $.ajax({
+        url:"",
+        type: "POST",
+        data: {
+          nama_modal: $("#nama_modal").val(),
+          id_modal:  $("#id_modal").val()
+        },
+      })
+    });
 
 </script>
 

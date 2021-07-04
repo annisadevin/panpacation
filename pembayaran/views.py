@@ -66,14 +66,30 @@ def check_jenis(id_penginapan):
     
     return jenis
 
-def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_penginap):
-    namap = request.POST.get('namapemesan', None)
-    jenis = request.POST.get('jenistest', None)
+# views untuk fitur buat pesanan
 
-    # with connection.cursor() as c:
-    #     c.execute("SELECT * FROM PENGGUNA")
-    #     data_pemesan = dictfetchall(c)
+def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_penginap):
+    username = request.session.get('username')
+    no_id = request.session.get('no_id')
+
+    nama_depan = request.session.get('nama_depan')
+    nama_belakang = request.session.get('nama_belakang')
+    with connection.cursor() as c:
+        c.execute("SELECT no_telp FROM PENGGUNA where username = '"+ username +"'")
+        res = dictfetchall(c)
+    no_telp = res[0]['no_telp']
+    nama_pemesan = nama_depan + '' +nama_belakang
     
+    with connection.cursor() as c:
+        c.execute("SELECT * FROM PENGGUNA where username = '"+ username +"'")
+        res = dictfetchall(c)
+
+    data_pemesan = res[0]
+
+    with connection.cursor() as c:
+        c.execute("SELECT * FROM TANGGUNGAN where username_pengguna = '"+ username +"'")
+        tanggungan = dictfetchall(c)
+
     with connection.cursor() as c:
         c.execute("SELECT * FROM TEMPAT_PENGINAPAN where id_penginapan = '"+ id_penginapan +"'")
         res = dictfetchall(c)
@@ -91,6 +107,7 @@ def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_pengina
         c.execute("SELECT id_transaksi_penginapan FROM TRANSAKSI_PENGINAPAN where id_transaksi = '"+ id_transaksi +"'")
         res = dictfetchall(c)
 
+    print(id_transaksi)
     id_transaksi_penginapan = res[0]['id_transaksi_penginapan']
 
     data_transaksi = {}
@@ -123,8 +140,45 @@ def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_pengina
     total_pesanan = 0
     for price in total_harga:
         total_pesanan +=price
+    init = 1
+    list_penginap = []
 
-    # pengguna = request.session['username']
+    for i in range(total_penginap):
+        list_penginap.append(str(init))
+        init+=1
+    
+    print(list_penginap)
+    if request.method == "POST": 
+        with connection.cursor() as c:
+            c.execute("UPDATE TRANSAKSI_PENGINAPAN set TOTAL_HARGA=%s", [total_pesanan])
+        
+        counter = 0
+
+        test_terpilih = request.POST.get("test-terpilih")
+        print(test_terpilih)
+        for i in range(len(tanggungan)):
+            stringsss = 'testcovid'+str(i)
+            if request.POST.get(stringsss)=='satu':
+                counter +=1
+
+        harga_test_covid = int(test_terpilih)*counter
+        total_semua = harga_test_covid + total_pesanan
+        return metodebayar(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_checkin, tgl_checkout, range_tanggal, total_pesanan, harga_test_covid, total_semua, no_telp,  total_penginap)
+   
+    if request.is_ajax:
+        if request.method == "POST": 
+            nama = request.POST.get("nama_modal")
+            print(nama)
+            id = request.POST.get("id_modal")
+            print(id)
+            with connection.cursor() as c:
+                c.execute("INSERT INTO TANGGUNGAN VALUES('"+ username +"','"+ id +"','"+ nama +"', NULL)")
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    with connection.cursor() as c:
+        c.execute("SELECT * FROM TEST_COVID_AVAIL")
+        test_covid_avail = dictfetchall(c)
+        
     argument = {
         'nama': nama_penginapan,
         'jenis' : jenis_penginapan,
@@ -135,15 +189,46 @@ def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_pengina
         'total_harga': total_harga,
         'total_pesanan': total_pesanan,
         'total_penginap':total_penginap,
-        # 'data_pemesan': data_pemesan,
+        'data_pemesan': data_pemesan,
+        'list_penginap':list_penginap,
+        'tanggungan':tanggungan,
+        'test_covid_avail':test_covid_avail,
     }
     
     return render(request,'buatpesanan.html', argument) 
 
-def metodebayar(request):
-    # va = request.POST.get('selesaiva', None)
-    # print(va)
-    return render(request,'metodebayar.html') 
+def metodebayar(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_checkin, tgl_checkout, durasi, total_harga_penginapan, total_test_covid, total_semua, no_telp, total_penginap):
+    if request.method == "POST": 
+        return receipt(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_checkin, tgl_checkout, durasi, total_harga_penginapan, total_test_covid, total_semua, no_telp, total_penginap)
 
-def receipt(request):
-    return render(request,'receipt.html') 
+    argument = {
+        'nama_pemesan':nama_pemesan,
+        'nama_penginapan':nama_penginapan,
+        'tgl_checkin':tgl_checkin,
+        'tgl_checkout':tgl_checkout,
+        'durasi':durasi,
+        'total_harga_penginapan':total_harga_penginapan,
+        'total_test_covid': total_test_covid,
+        'total_semua':total_semua,
+        'no_telp': no_telp,
+        'id_penginapan': id_penginapan,
+        'total_penginap': total_penginap,
+    }
+
+    return render(request,'metodebayar.html', argument) 
+
+def receipt(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_checkin, tgl_checkout, durasi, total_harga_penginapan, total_test_covid, total_semua, no_telp, total_penginap):
+    argument = {
+        'nama_pemesan':nama_pemesan,
+        'nama_penginapan':nama_penginapan,
+        'tgl_checkin':tgl_checkin,
+        'tgl_checkout':tgl_checkout,
+        'durasi':durasi,
+        'total_harga_penginapan':total_harga_penginapan,
+        'total_test_covid': total_test_covid,
+        'total_semua':total_semua,
+        'no_telp': no_telp,
+        'id_penginapan': id_penginapan,
+        'total_penginap': total_penginap,
+    }
+    return render(request,'receipt.html', argument) 
