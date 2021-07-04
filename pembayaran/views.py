@@ -107,7 +107,6 @@ def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_pengina
         c.execute("SELECT id_transaksi_penginapan FROM TRANSAKSI_PENGINAPAN where id_transaksi = '"+ id_transaksi +"'")
         res = dictfetchall(c)
 
-    print(id_transaksi)
     id_transaksi_penginapan = res[0]['id_transaksi_penginapan']
 
     data_transaksi = {}
@@ -126,7 +125,6 @@ def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_pengina
             c.execute("SELECT * FROM PILIHAN_APARTEMEN_ROOM PA JOIN APARTEMEN_ROOM AR ON PA.id_kode_room = AR.kode_room where id_transaksi_penginapan = '"+ id_transaksi_penginapan +"' and PA.id_apartemen = AR.id_apartemen")
             data_transaksi = dictfetchall(c)
 
-    print(data_transaksi)
     d0 = date(int(tgl_checkin[0:4]), int(tgl_checkin[5:7]), int(tgl_checkin[8:10]))
     d1 = date(int(tgl_checkout[0:4]), int(tgl_checkout[5:7]), int(tgl_checkout[8:10]))
     delta = d1-d0
@@ -147,7 +145,6 @@ def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_pengina
         list_penginap.append(str(init))
         init+=1
     
-    print(list_penginap)
     if request.method == "POST": 
         with connection.cursor() as c:
             c.execute("UPDATE TRANSAKSI_PENGINAPAN set TOTAL_HARGA=%s", [total_pesanan])
@@ -155,7 +152,7 @@ def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_pengina
         counter = 0
 
         test_terpilih = request.POST.get("test-terpilih")
-        print(test_terpilih)
+
         for i in range(len(tanggungan)):
             stringsss = 'testcovid'+str(i)
             if request.POST.get(stringsss)=='satu':
@@ -168,9 +165,8 @@ def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_pengina
     if request.is_ajax:
         if request.method == "POST": 
             nama = request.POST.get("nama_modal")
-            print(nama)
             id = request.POST.get("id_modal")
-            print(id)
+
             with connection.cursor() as c:
                 c.execute("INSERT INTO TANGGUNGAN VALUES('"+ username +"','"+ id +"','"+ nama +"', NULL)")
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
