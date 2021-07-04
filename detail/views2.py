@@ -13,6 +13,7 @@ from datetime import datetime
 def detailpencarian(request, id, checkin, checkout, jml):
     username = request.session.get('username')
     iddddd = id
+    print(iddddd)
     jenis = ''
     if(id[0] == 'A'):
         jenis = 'Apartemen'
@@ -165,7 +166,7 @@ def detailpencarian(request, id, checkin, checkout, jml):
                 else:
                     c.execute("INSERT INTO pilihan_villa VALUES(%s, %s)", [newest_idtp, iddddd])
                 
-            return redirect('/detail/')
+            return redirect('/pembayaran/'+id+'/'+ci+'/'+co+'/'+j+'/')
 
         except IntegrityError:
             messages.error(request, 'Data yang diisikan belum lengkap, silahkan lengkapi data terlebih dahulu')
