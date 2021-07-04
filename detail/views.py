@@ -376,6 +376,7 @@ def hasil_pencarian(request, checkin, checkout, reservasi, lokasi, jumlah):
         inputCheckout = request.POST.get('checkout')
 
         with connection.cursor() as c:
+            if (inputCheckin != '' and inputCheckout != ''):
                 if reservasi == 'Apartemen':
                     c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, A.id_penginapan FROM APARTEMEN A, APARTEMEN_ROOM AR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = A.id_penginapan AND A.id_penginapan = AR.id_apartemen AND TEM.id_penginapan = F.id_penginapan AND (AR.id_apartemen, AR.kode_room) NOT IN (SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
                     res = dictfetchall(c)
@@ -1041,6 +1042,7 @@ def hasil_pencarian2(request, reservasi):
         inputCheckout = request.POST.get('checkout')
 
         with connection.cursor() as c:
+            if(inputCheckin != '' and inputCheckout !=''):
                 if reservasi == 'apartemen':
                     c.execute("SELECT distinct on (nama) nama, link, alamat_lengkap, rating, harga_termurah, A.id_penginapan FROM APARTEMEN A, APARTEMEN_ROOM AR, TEMPAT_PENGINAPAN TEM, FOTO F WHERE TEM.id_penginapan = A.id_penginapan AND A.id_penginapan = AR.id_apartemen AND TEM.id_penginapan = F.id_penginapan AND (AR.id_apartemen, AR.kode_room) NOT IN (SELECT PAR.id_apartemen, PAR.id_kode_room FROM PILIHAN_APARTEMEN_ROOM PAR, TRANSAKSI_PENGINAPAN TP WHERE PAR.id_transaksi_penginapan = TP.id_transaksi_penginapan AND TP.tgl_checkin <= %s AND TP.tgl_checkout >= %s)",[inputCheckin, inputCheckout])
                     res = dictfetchall(c)

@@ -171,13 +171,14 @@ def buatpesanan(request, id_penginapan, tgl_checkin, tgl_checkout, total_pengina
             c.execute("update transaksi set total_bayar=%s", [total_semua])
 
         with connection.cursor() as c:
-            c.execute("update transaksi_penginapan set total_bayar=%s", [total_pesanan])
+            c.execute("update transaksi_penginapan set total_harga=%s", [total_pesanan])
 
         with connection.cursor() as c:
-            c.execute("update transaksi_test_covid set total_bayar=%s", [harga_test_covid])
-            
+            c.execute("update transaksi_test_covid set total_harga=%s", [harga_test_covid])
         return metodebayar(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_checkin, tgl_checkout, range_tanggal, total_pesanan, harga_test_covid, total_semua, no_telp,  total_penginap)
    
+        # return redirect("/pembayaran/metodebayar/" + nama_pemesan + "/" + id_penginapan + "/" +  nama_penginapan + "/" +  tgl_checkin +"/" + tgl_checkout +"/" + str(range_tanggal) +"/" + str(total_pesanan)+"/" +str(harga_test_covid)+"/" +str(total_semua)+"/" +no_telp+"/" + str(total_penginap) + "/")
+        
     if request.is_ajax:
         if request.method == "POST": 
             nama = request.POST.get("nama_modal")
@@ -214,6 +215,8 @@ def metodebayar(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_check
     set_session(request, response)
     if request.method == "POST": 
         return receipt(request, nama_pemesan, id_penginapan, nama_penginapan, tgl_checkin, tgl_checkout, durasi, total_harga_penginapan, total_test_covid, total_semua, no_telp, total_penginap)
+
+        # return redirect("/pembayaran/receipt/" + nama_pemesan + "/" + id_penginapan + "/" +  nama_penginapan + "/" +  tgl_checkin +"/" + tgl_checkout +"/" + str(durasi) +"/" + str(total_pesanan)+"/" +str(harga_test_covid)+"/" +str(total_semua)+"/" +no_telp+"/" + str(total_penginap) + "/")
 
     argument = {
         'nama_pemesan':nama_pemesan,

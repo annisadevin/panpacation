@@ -28,8 +28,10 @@ def register(request):
             with connection.cursor() as cursor:
                 cursor.execute(stmt1, [email, password, nama_depan, nama_belakang])
                 connection.commit()
-                
+            
             request.session['username'] = request.POST.get('email')
+            request.session['nama_depan'] = nama_depan
+            request.session['nama_belakang'] = nama_belakang
             request.session['is_authenticated'] = True
             return redirect('/')
         except Exception as e:
