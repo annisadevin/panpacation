@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block style%}
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+<title> Homepage </title>
+{%endblock style%}
+
+{% block content %}
+
+<section id="random">
+    <div class="container">
+        <div class="card mx-auto" id="card-random">
+            <div class="card-body">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <h2 class="font-weight-light text-center mb-5"> Mau staycation kemana? </h2>
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-sm-6 col-md-4 col-lg-3 item">
+                                <img class="img-diklik img-fluid" src="{% static 'main/img/Interior1.png' %}">
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3 item">
+                                <img class="img-diklik img-fluid" src="{% static 'main/img/Interior2.png' %}">
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3 item">
+                                <img class="img-diklik img-fluid" src="{% static 'main/img/Interior3.png' %}">
+                            </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <h2 class="font-weight-light text-center mb-5"> Mau staycation kemana? </h2>
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-sm-6 col-md-4 col-lg-3 item">
+                                <img class="img-diklik img-fluid" src="{% static 'main/img/Interior4.png' %}">
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3 item">
+                                <img class="img-diklik img-fluid" src="{% static 'main/img/Interior5.png' %}">
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3 item">
+                                <img class="img-diklik img-fluid" src="{% static 'main/img/Interior6.png' %}">
+                            </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <h2 class="font-weight-light text-center mb-5"> Mau staycation kemana? </h2>
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-sm-6 col-md-4 col-lg-3 item">
+                                <img class="img-diklik img-fluid" src="{% static 'main/img/Interior7.png' %}">
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3 item">
+                                <img class="img-diklik img-fluid" src="{% static 'main/img/Interior8.png' %}">
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3 item">
+                                <img class="img-diklik img-fluid" src="{% static 'main/img/Interior9.png' %}">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <button id="button-random" type="submit" class="mt-5 btn btn-light" data-toggle="collapse" href="#home">Next</button>
+                    </a>
+                  </div>
+                <form>
+                    <input type="hidden" id="keep-random-no" value="">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{% static 'main/javascript/main.js' %}" type="text/javascript"></script>
+{% endblock content %}

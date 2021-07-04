@@ -8,4 +8,5 @@ urlpatterns = [
     path('', views.main, name='main'),
     path('filterPencarian', views.filterPencarian, name='filterPencarian'),
     path('data/basedOnReservasi/', views.data_basedOnReservasi, name='data_basedOnReservasi'),
+    path('random', views.random, name='random'),
 ]
