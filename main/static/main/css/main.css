@@ -57,7 +57,7 @@
     padding-right: 5%;
 }
 
-#button-check-ketersediaan{
+#button-check-ketersediaan, #button-random{
     color: white;
     background-color: #F5759D !important;
     border-radius: 0px !important;
@@ -201,4 +201,27 @@ li {
 
 .row-2 {
     background-color: #005A8D !important
+}
+
+a li{
+    color: white;
+}
+
+/* RANDOM */
+#random{
+    padding-top: 8%;
+    padding-bottom: 8%;
+    background-color: white !important;
+}
+
+#card-random {
+    max-width: 700px;
+    padding: 6vh;
+    padding-top: 7px !important;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    display: block;
+    box-shadow: 0 0 15px #dae0e5
 }

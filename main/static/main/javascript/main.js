@@ -39,11 +39,29 @@ $(document).ready(function(){
 
                 for (var i=0; i<listKota.length; i++){
                     var kota = listKota[i][0];
-                    var changedHTML = '<option value=' + kota + '>' + kota + '</option>';
-
+                    var changedHTML = '<option value="' + kota + '">' + kota + '</option>';
+                    console.log(changedHTML);
                     $('select#select-lokasi').append(changedHTML);
                 }
             }
         });
+    });
+
+    $("#button-check-ketersediaan").click(function(){
+        var check_in = new Date($("input[name='check_in']").val());
+        var check_out = new Date($("input[name='check_out']").val());
+
+        if(check_in > check_out){
+            alert("Waktu check out harus lebih besar dari waktu check in");
+        }
+    });
+
+    $(".img-diklik").click(function(){
+        console.log($(".img-diklik").attr('src'));
+        var src = $(".img-diklik").attr('src');
+        var res = src.substring(25, 26);
+        console.log(res)
+        
+        $("#keep-random-no").val(res);
     });
 });
