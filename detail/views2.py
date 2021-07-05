@@ -91,7 +91,8 @@ def detailpencarian(request, id, checkin, checkout, jml):
         for i in range(len(kapasitas)):
             c.execute("select kapasitas from fasilitas_room where id_fasilitas = (select id_fasilitas from data_detail where kode_room = %s);", [kapasitas[i]])
             rres = dictfetchall(c)
-            tempo = tempo+ int(rres[0]['kapasitas'])
+            if(len(rres) != 0):
+                tempo = tempo+ int(rres[0]['kapasitas'])
     print(tempo)
     a = int(res[0]['iswifi']) + int(res[0]['isparkirluas'])
     link = rep[0]
