@@ -7,6 +7,7 @@ $(document).ready(function(){
   });
   });
 
+
 $(document).ready(function () {
   var id = document.getElementById("kode").textContent;
   var checkin = $("#checkin").val();  

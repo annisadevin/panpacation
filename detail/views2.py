@@ -54,9 +54,11 @@ def detailpencarian(request, id, checkin, checkout, jml):
         c.execute("select * from transaksi_penginapan ORDER BY id_transaksi DESC limit 1")
         transaksi_penginapan = dictfetchall(c)
 
-        c.execute("select * from review;")
+        c.execute("select * from review where Id_transaksi_penginapan in(  select Id_Transaksi_Penginapan from  Transaksi_Penginapan where Id_Transaksi_Penginapan in(select Id_Transaksi_Penginapan from Pilihan_Apartemen_Room where id_apartemen=%s))",[iddddd])
         rating = dictfetchall(c)
 
+    if(len(rating)==0):
+        rating = [{'isi' : "Belum ada review :("}]
     arrstatus = []
     status = 1
     tmp ={}
@@ -170,8 +172,8 @@ def detailpencarian(request, id, checkin, checkout, jml):
         try:
             if (ci > co):
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-            if (int(j) > tempo):
-                print("halo")
+            if (jenis != 'Villa' and int(j) > tempo):
+                raise IntegrityError("Silahkan memilih ruangan dengan kapasitas yang memadai") 
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
             with connection.cursor() as c:
                 c.execute("INSERT INTO transaksi VALUES (%s, %s, %s, %s, %s, %s)", [newest_id,'Belum bayar',0, 'VA', username, time])
@@ -190,7 +192,7 @@ def detailpencarian(request, id, checkin, checkout, jml):
             return redirect('/pembayaran/buatpesanan/'+str(iddddd)+'/'+ci+'/'+co+'/'+str(j)+'/')
 
         except IntegrityError:
-            messages.error(request, 'Data yang diisikan belum lengkap, silahkan lengkapi data terlebih dahulu')
+            messages.error(request, 'Silahkan memilih ruangan dengan kapasitas yang memadai')
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     set_session(request, response)
     return render(request,'detail_pencarian.html', response)
@@ -216,7 +218,6 @@ def getkodefromcheckin(request, id, checkin, checkout, jml):
         arr.append(tmp.copy())
 
     return JsonResponse(arr, safe = False) 
-
 
 
 def dictfetchall(cursor):
