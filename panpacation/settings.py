@@ -38,7 +38,9 @@ PRODUCTION = os.getenv('DATABASE_URL') is not None
 # set this to True.
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+HEROKU_APP_NAME = os.getenv('HEROKU_APP_NAME', '')
+
+ALLOWED_HOSTS = [f'{HEROKU_APP_NAME}.herokuapp.com']
 
 if not PRODUCTION:
     ALLOWED_HOSTS += ['.localhost', '127.0.0.1', '[::1]']
@@ -100,7 +102,7 @@ WSGI_APPLICATION = 'panpacation.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd9k10vb57u7cv',
         'USER': 'eyfqvnecjcoutc',
         'PASSWORD' : '7a35adf9958f32d55701bfb718df96dba04d7806991d93a35e4799f691b96a1d',
@@ -116,7 +118,7 @@ DATABASES = {
 if PRODUCTION:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'ENGINE': 'django.db.backends.postgresql',
             'NAME': os.environ.get('DATABASE_NAME'),
             'USER': os.environ.get('DATABASE_USER'),
             'PASSWORD': os.environ.get('DATABASE_PASS'),
