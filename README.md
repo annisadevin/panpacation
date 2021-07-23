@@ -1,7 +1,7 @@
 # PANPACATION
 
 This repository include PANPACATION PROJECT. 
-PANPACATION is an website that help people searching for right place to get staycation.
+PANPACATION is a website that help people searching for right place to get staycation.
 
 ## Meet the team
 

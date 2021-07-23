@@ -173,7 +173,7 @@ def detailpencarian(request, id, checkin, checkout, jml):
         try:
             if (ci > co):
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-            if (jenis != 'Villa' and int(j) > tempo):
+            if (jenis != 'Villa' and jenis != 'Kos' and int(j) > tempo):
                 raise IntegrityError("Silahkan memilih ruangan dengan kapasitas yang memadai") 
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
             with connection.cursor() as c:

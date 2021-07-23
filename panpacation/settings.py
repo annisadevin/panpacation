@@ -38,9 +38,7 @@ PRODUCTION = os.getenv('DATABASE_URL') is not None
 # set this to True.
 DEBUG = True
 
-HEROKU_APP_NAME = os.getenv('HEROKU_APP_NAME', '')
-
-ALLOWED_HOSTS = [f'{HEROKU_APP_NAME}.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 if not PRODUCTION:
     ALLOWED_HOSTS += ['.localhost', '127.0.0.1', '[::1]']
@@ -102,7 +100,7 @@ WSGI_APPLICATION = 'panpacation.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd9k10vb57u7cv',
         'USER': 'eyfqvnecjcoutc',
         'PASSWORD' : '7a35adf9958f32d55701bfb718df96dba04d7806991d93a35e4799f691b96a1d',
@@ -116,9 +114,21 @@ DATABASES = {
 }
 # Set database settings automatically using DATABASE_URL.
 if PRODUCTION:
-    DATABASES['default'] = dj_database_url.config(
-        conn_max_age=600, ssl_require=True
-    )
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ.get('DATABASE_NAME'),
+            'USER': os.environ.get('DATABASE_USER'),
+            'PASSWORD': os.environ.get('DATABASE_PASS'),
+            'HOST': os.environ.get('DATABASE_HOST'),
+            'PORT': '5432',
+            'OPTIONS': {
+                'options': '-c search_path=panpacation'
+            },
+        }
+    }
+    SECURE_SSL_REDIRECT = True
+    DEBUG = False
 
 
 # Password validation
