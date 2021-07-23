@@ -117,19 +117,19 @@ DATABASES = {
 # Set database settings automatically using DATABASE_URL.
 if PRODUCTION:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd9k10vb57u7cv',
-        'USER': 'eyfqvnecjcoutc',
-        'PASSWORD' : '7a35adf9958f32d55701bfb718df96dba04d7806991d93a35e4799f691b96a1d',
-        'HOST': 'ec2-35-169-188-58.compute-1.amazonaws.com',
-        'PORT' : '5432',
-        'OPTIONS': {
-            'options': '-c search_path=panpacation'
-        },
-
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('DATABASE_NAME'),
+            'USER': os.environ.get('DATABASE_USER'),
+            'PASSWORD': os.environ.get('DATABASE_PASS'),
+            'HOST': os.environ.get('DATABASE_HOST'),
+            'PORT': '5432',
+            'OPTIONS': {
+                'options': '-c search_path=panpacation'
+            },
+        }
     }
-}
+
 
 
 # Password validation
