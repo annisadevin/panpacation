@@ -116,20 +116,9 @@ DATABASES = {
 }
 # Set database settings automatically using DATABASE_URL.
 if PRODUCTION:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DATABASE_NAME'),
-            'USER': os.environ.get('DATABASE_USER'),
-            'PASSWORD': os.environ.get('DATABASE_PASS'),
-            'HOST': os.environ.get('DATABASE_HOST'),
-            'PORT': '5432',
-            'OPTIONS': {
-                'options': '-c search_path=panpacation'
-            },
-        }
-    }
-
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=600, ssl_require=True
+    )
 
 
 # Password validation
